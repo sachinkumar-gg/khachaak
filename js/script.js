@@ -456,11 +456,24 @@ document.querySelectorAll("section").forEach(section => {
 
 });
 
+// Fallback: Ensure all sections reveal even if scroll observer fails
+setTimeout(() => {
+
+    document.querySelectorAll("section.fade-up").forEach(section => {
+
+        section.classList.add("show");
+
+    });
+
+}, 500);
+
 function balanceHomeGalleryColumns(){
 
     const galleryGrid = document.querySelector(".gallery-grid");
 
     if(!galleryGrid || document.querySelector(".gallery-page")) return;
+
+    if(galleryGrid.clientWidth === 0) return;
 
     const items = Array.from(galleryGrid.querySelectorAll(".gallery-item"));
 
