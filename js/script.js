@@ -429,11 +429,6 @@ const observer = new IntersectionObserver(
 
                 entry.target.classList.add("show");
 
-                if(entry.target.id === "gallery"){
-
-                    balanceHomeGalleryColumns();
-
-                }
             }
 
         });
@@ -466,73 +461,6 @@ setTimeout(() => {
     });
 
 }, 500);
-
-function balanceHomeGalleryColumns(){
-
-    const galleryGrid = document.querySelector(".gallery-grid");
-
-    if(!galleryGrid || document.querySelector(".gallery-page")) return;
-
-    if(galleryGrid.clientWidth === 0) return;
-
-    const items = Array.from(galleryGrid.querySelectorAll(".gallery-item"));
-
-    if(items.length === 0) return;
-
-    const minColumnWidth = 320;
-
-    const columnCount = Math.max(1, Math.min(4, Math.floor((galleryGrid.clientWidth + 22) / (minColumnWidth + 22))));
-
-    const columns = Array.from({length: columnCount},() => {
-
-        const col = document.createElement("div");
-
-        col.className = "gallery-column";
-
-        return col;
-
-    });
-
-    // Clear grid and create columns
-    galleryGrid.textContent = "";
-    columns.forEach(col => galleryGrid.appendChild(col));
-
-    items.forEach(item => {
-
-        // choose the column with the smallest scrollHeight; if tie, pick the one with fewer items
-        let target = columns[0];
-        for(let i=1;i<columns.length;i++){
-            const col = columns[i];
-            if(col.scrollHeight < target.scrollHeight || (col.scrollHeight === target.scrollHeight && col.children.length < target.children.length)){
-                target = col;
-            }
-        }
-
-        target.appendChild(item);
-
-    });
-
-}
-
-window.addEventListener("load", balanceHomeGalleryColumns);
-
-window.addEventListener("resize", () => {
-
-    const galleryGrid = document.querySelector(".gallery-grid");
-
-    if(!galleryGrid || document.querySelector(".gallery-page")) return;
-
-    galleryGrid.querySelectorAll(".gallery-column").forEach(col => {
-
-        while(col.firstChild) galleryGrid.appendChild(col.firstChild);
-
-        col.remove();
-
-    });
-
-    balanceHomeGalleryColumns();
-
-});
 
 
 /* =========================================
