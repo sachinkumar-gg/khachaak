@@ -1623,7 +1623,7 @@ nav ul li.active a{
 /* #1 Porsche */
 .month-card:nth-child(1) img{
 
-    object-position:95% 60%;
+    object-position:center center;
 }
 
 /* #2 Rider */
