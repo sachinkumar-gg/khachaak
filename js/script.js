@@ -428,6 +428,12 @@ const observer = new IntersectionObserver(
             if (entry.isIntersecting) {
 
                 entry.target.classList.add("show");
+
+                if(entry.target.id === "gallery"){
+
+                    balanceHomeGalleryColumns();
+
+                }
             }
 
         });
@@ -435,7 +441,9 @@ const observer = new IntersectionObserver(
     },
 
     {
-        threshold: 0.15
+        threshold: 0.01,
+
+        rootMargin: "200px 0px 200px 0px"
     }
 
 );
