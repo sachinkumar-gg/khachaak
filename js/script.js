@@ -911,16 +911,10 @@ function setupHUDControls() {
         hudBar.className = 'hud-controls-bar';
         hudBar.innerHTML = `
             <button class="hud-btn shutter-sound-btn active" title="Toggle Shutter Click Sound">
-                <span>🔊 SHUTTER</span>
+                <span>🔊 SHUTTER SOUND</span>
             </button>
             <button class="hud-btn rule-grid-btn" title="Toggle Rule of Thirds Grid">
                 <span>📐 GRID</span>
-            </button>
-            <button class="hud-btn darkroom-btn" title="Toggle Darkroom Safelight Mode">
-                <span>🔴 DARKROOM</span>
-            </button>
-            <button class="hud-btn focus-peak-btn" title="Toggle Focus Peaking Assist">
-                <span>✨ FOCUS PEAK</span>
             </button>
         `;
         document.body.appendChild(hudBar);
@@ -932,11 +926,11 @@ function setupHUDControls() {
             soundEnabled = !soundEnabled;
             if (soundEnabled) {
                 soundBtn.classList.add('active');
-                soundBtn.innerHTML = '<span>🔊 SHUTTER</span>';
+                soundBtn.innerHTML = '<span>🔊 SHUTTER SOUND</span>';
                 playShutterSound();
             } else {
                 soundBtn.classList.remove('active');
-                soundBtn.innerHTML = '<span>MUTE</span>';
+                soundBtn.innerHTML = '<span>MUTE SHUTTER</span>';
             }
         });
     }
@@ -955,113 +949,10 @@ function setupHUDControls() {
             gridBtn.classList.toggle('active');
         });
     }
-
-    const darkroomBtn = hudBar.querySelector('.darkroom-btn');
-    if (darkroomBtn) {
-        darkroomBtn.addEventListener('click', () => {
-            document.body.classList.toggle('darkroom-mode');
-            darkroomBtn.classList.toggle('active');
-            playShutterSound();
-        });
-    }
-
-    const focusPeakBtn = hudBar.querySelector('.focus-peak-btn');
-    if (focusPeakBtn) {
-        focusPeakBtn.addEventListener('click', () => {
-            document.body.classList.toggle('focus-peaking-mode');
-            focusPeakBtn.classList.toggle('active');
-            playShutterSound();
-        });
-    }
 }
 
 document.addEventListener('DOMContentLoaded', setupHUDControls);
 setupHUDControls();
-
-/* =========================================
-   INTERACTIVE LENS APERTURE DIAL LOGIC
-========================================= */
-
-const apertureBtns = document.querySelectorAll('.aperture-stop-btn');
-const bokehImage = document.getElementById('bokehDemoImage');
-const apertureReadout = document.getElementById('apertureReadout');
-const irisOpening = document.getElementById('irisApertureOpening');
-
-const apertureMap = {
-    '1.4': { blur: '16px', radius: '28', label: 'CURRENT: f/1.4 · MAX BOKEH (SHALLOW DEPTH OF FIELD)' },
-    '2.8': { blur: '10px', radius: '22', label: 'CURRENT: f/2.8 · PORTRAIT BOKEH' },
-    '5.6': { blur: '4px', radius: '15', label: 'CURRENT: f/5.6 · BALANCED SHARPNESS' },
-    '11': { blur: '1.5px', radius: '9', label: 'CURRENT: f/11 · LANDSCAPE DETAIL' },
-    '22': { blur: '0px', radius: '4', label: 'CURRENT: f/22 · DEEP FOCUS (ZERO BOKEH)' }
-};
-
-apertureBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        apertureBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const fstop = btn.dataset.aperture;
-        const config = apertureMap[fstop];
-
-        if (config) {
-            if (bokehImage) bokehImage.style.filter = `blur(${config.blur})`;
-            if (irisOpening) irisOpening.setAttribute('r', config.radius);
-            if (apertureReadout) apertureReadout.textContent = config.label;
-            playShutterSound();
-        }
-    });
-});
-
-/* =========================================
-   RAW vs EDIT COLOR GRADING SLIDER
-========================================= */
-
-function getEl(idName) { return document.getElementById(idName); }
-
-const sliderContainer = getEl('colorGradeSlider');
-const beforeLayer = getEl('beforeLayer');
-const sliderHandle = getEl('sliderHandle');
-
-if (sliderContainer && beforeLayer && sliderHandle) {
-    let isDragging = false;
-
-    function moveSlider(clientX) {
-        const rect = sliderContainer.getBoundingClientRect();
-        let x = clientX - rect.left;
-        x = Math.max(0, Math.min(x, rect.width));
-        const percentage = (x / rect.width) * 100;
-
-        beforeLayer.style.width = `${percentage}%`;
-        sliderHandle.style.left = `${percentage}%`;
-    }
-
-    sliderContainer.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        moveSlider(e.clientX);
-    });
-
-    window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        moveSlider(e.clientX);
-    });
-
-    window.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-
-    sliderContainer.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        moveSlider(e.touches[0].clientX);
-    });
-
-    window.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        moveSlider(e.touches[0].clientX);
-    });
-
-    window.addEventListener('touchend', () => {
-        isDragging = false;
-    });
-}
 
 /* =========================================
    EVENTS FILTERING & MODAL
