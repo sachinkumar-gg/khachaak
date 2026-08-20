@@ -794,4 +794,298 @@ window.addEventListener("mousemove",(e)=>{
 
 });
 
+/* =========================================
+   CAMERA SOUND ENGINE (Web Audio API)
+========================================= */
+
+let audioCtx = null;
+let soundEnabled = true;
+
+function initAudio() {
+    if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+            audioCtx = new AudioContext();
+        }
+    }
+}
+
+function playShutterSound() {
+    if (!soundEnabled) return;
+    try {
+        initAudio();
+        if (!audioCtx) return;
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+
+        const now = audioCtx.currentTime;
+
+        // Mechanical Mirror Flip (Noise burst)
+        const bufferSize = audioCtx.sampleRate * 0.05;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(1200, now);
+        filter.Q.setValueAtTime(3, now);
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.045);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.start(now);
+        noise.stop(now + 0.05);
+
+        // Secondary Shutter Snap (Curtain Click)
+        setTimeout(() => {
+            if (!audioCtx) return;
+            const now2 = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const oscGain = audioCtx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(320, now2);
+            osc.frequency.exponentialRampToValueAtTime(80, now2 + 0.03);
+
+            oscGain.gain.setValueAtTime(0.3, now2);
+            oscGain.gain.exponentialRampToValueAtTime(0.01, now2 + 0.03);
+
+            osc.connect(oscGain);
+            oscGain.connect(audioCtx.destination);
+
+            osc.start(now2);
+            osc.stop(now2 + 0.035);
+        }, 35);
+    } catch (e) {
+        console.warn('Audio play error', e);
+    }
+}
+
+function triggerCameraFlash() {
+    let flashEl = document.querySelector('.camera-flash-overlay');
+    if (!flashEl) {
+        flashEl = document.createElement('div');
+        flashEl.className = 'camera-flash-overlay';
+        document.body.appendChild(flashEl);
+    }
+    flashEl.classList.add('flash-active');
+    setTimeout(() => {
+        flashEl.classList.remove('flash-active');
+    }, 120);
+}
+
+/* Wire shutter click to lightbox and buttons */
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.gallery-item') || e.target.closest('.story-card img') || e.target.closest('.hud-btn') || e.target.closest('.event-register-btn')) {
+        playShutterSound();
+    }
+});
+
+/* Lightbox enhancement with camera flash & sound */
+document.querySelectorAll('.gallery-item img, .month-img-wrap img').forEach(img => {
+    img.addEventListener('click', () => {
+        triggerCameraFlash();
+    });
+});
+
+/* =========================================
+   CAMERA HUD CONTROLS
+========================================= */
+
+function setupHUDControls() {
+    let hudBar = document.querySelector('.hud-controls-bar');
+    if (!hudBar) {
+        hudBar = document.createElement('div');
+        hudBar.className = 'hud-controls-bar';
+        hudBar.innerHTML = `
+            <button class="hud-btn shutter-sound-btn active" title="Toggle Shutter Click Sound">
+                <span>🔊 SHUTTER SOUND</span>
+            </button>
+            <button class="hud-btn rule-grid-btn" title="Toggle Rule of Thirds Grid">
+                <span>📐 GRID</span>
+            </button>
+        `;
+        document.body.appendChild(hudBar);
+    }
+
+    const soundBtn = hudBar.querySelector('.shutter-sound-btn');
+    if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            if (soundEnabled) {
+                soundBtn.classList.add('active');
+                soundBtn.innerHTML = '<span>🔊 SHUTTER SOUND</span>';
+                playShutterSound();
+            } else {
+                soundBtn.classList.remove('active');
+                soundBtn.innerHTML = '<span>MUTE SHUTTER</span>';
+            }
+        });
+    }
+
+    const gridBtn = hudBar.querySelector('.rule-grid-btn');
+    let gridOverlay = document.querySelector('.rule-of-thirds-grid');
+    if (!gridOverlay) {
+        gridOverlay = document.createElement('div');
+        gridOverlay.className = 'rule-of-thirds-grid';
+        document.body.appendChild(gridOverlay);
+    }
+
+    if (gridBtn) {
+        gridBtn.addEventListener('click', () => {
+            gridOverlay.classList.toggle('active');
+            gridBtn.classList.toggle('active');
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', setupHUDControls);
+setupHUDControls();
+
+/* =========================================
+   EVENTS FILTERING & MODAL
+========================================= */
+
+const eventFilterBtns = document.querySelectorAll('.event-filter-btn');
+const eventCards = document.querySelectorAll('.event-card');
+
+eventFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        eventFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        eventCards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+                card.style.display = 'flex';
+                card.style.animation = 'fadeInUp 0.4s ease forwards';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* Event Registration Modal */
+const registerBtns = document.querySelectorAll('.event-register-btn');
+const modalBackdrop = document.querySelector('.modal-backdrop');
+const modalClose = document.querySelector('.modal-close-btn');
+const modalForm = document.querySelector('.modal-form');
+const eventTitleTarget = document.getElementById('modalEventTitle');
+
+registerBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const eventName = btn.dataset.eventName || 'Khachaak Event';
+        if (eventTitleTarget) eventTitleTarget.textContent = `Register for ${eventName}`;
+        if (modalBackdrop) modalBackdrop.classList.add('active');
+    });
+});
+
+if (modalClose && modalBackdrop) {
+    modalClose.addEventListener('click', () => {
+        modalBackdrop.classList.remove('active');
+    });
+
+    modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) modalBackdrop.classList.remove('active');
+    });
+}
+
+if (modalForm) {
+    modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        playShutterSound();
+        triggerCameraFlash();
+        alert('🎉 Registration Successful! See you through the lens.');
+        if (modalBackdrop) modalBackdrop.classList.remove('active');
+        modalForm.reset();
+    });
+}
+
+/* =========================================
+   LIVE COUNTDOWN TIMER
+========================================= */
+
+function updateCountdown() {
+    const daysEl = document.getElementById('timerDays');
+    const hoursEl = document.getElementById('timerHours');
+    const minsEl = document.getElementById('timerMins');
+    const secsEl = document.getElementById('timerSecs');
+
+    if (!daysEl) return;
+
+    // Target date: Aperture 2026 flagship event (Sept 25, 2026)
+    const targetDate = new Date('2026-09-25T10:00:00+05:30').getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minsEl.textContent = String(mins).padStart(2, '0');
+        secsEl.textContent = String(secs).padStart(2, '0');
+    }
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* =========================================
+   PHOTOS OF THE MONTH LIKES
+========================================= */
+
+document.querySelectorAll('.like-btn').forEach((btn, idx) => {
+    const countEl = btn.querySelector('.like-count');
+    const storageKey = `khachaak_like_${idx}`;
+    let likes = parseInt(localStorage.getItem(storageKey) || (142 + idx * 37), 10);
+    countEl.textContent = likes;
+
+    btn.addEventListener('click', () => {
+        if (!btn.classList.contains('liked')) {
+            likes++;
+            btn.classList.add('liked');
+            localStorage.setItem(storageKey, likes);
+            countEl.textContent = likes;
+            playShutterSound();
+        }
+    });
+});
+
+/* =========================================
+   3D TILT EFFECT FOR CARDS
+========================================= */
+
+document.querySelectorAll('.story-card, .event-card, .month-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const tiltX = (y / (rect.height / 2)) * -6;
+        const tiltY = (x / (rect.width / 2)) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+});
+
 })();
+
