@@ -454,6 +454,58 @@
 
         </div>
 
+        <!-- Lens Aperture & Depth-of-field Control Widget -->
+        <div class="aperture-widget">
+            <div class="aperture-controls">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:0.85rem; color:var(--bronze); margin-right:10px;">LENS APERTURE DIAL (BOKEH CONTROL):</span>
+                <button class="aperture-stop-btn active" data-aperture="1.4">f/1.4</button>
+                <button class="aperture-stop-btn" data-aperture="2.8">f/2.8</button>
+                <button class="aperture-stop-btn" data-aperture="5.6">f/5.6</button>
+                <button class="aperture-stop-btn" data-aperture="11">f/11</button>
+                <button class="aperture-stop-btn" data-aperture="22">f/22</button>
+            </div>
+            <div class="aperture-preview-flex">
+                <div class="iris-graphic-wrap">
+                    <svg class="iris-svg" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="48" fill="none" stroke="var(--bronze)" stroke-width="2"/>
+                        <polygon class="iris-blade blade-1" points="50,15 80,35 60,65 30,55" />
+                        <polygon class="iris-blade blade-2" points="80,35 85,65 55,85 45,55" />
+                        <polygon class="iris-blade blade-3" points="85,65 55,85 25,75 35,45" />
+                        <polygon class="iris-blade blade-4" points="55,85 25,75 15,45 45,35" />
+                        <polygon class="iris-blade blade-5" points="25,75 15,45 45,15 55,45" />
+                        <polygon class="iris-blade blade-6" points="15,45 45,15 75,25 55,55" />
+                        <circle cx="50" cy="50" r="24" id="irisApertureOpening" fill="none" stroke="var(--bronze)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    </svg>
+                    <div class="aperture-readout" id="apertureReadout">CURRENT: f/1.4 · BOKEH 100%</div>
+                </div>
+                <div class="bokeh-demo-frame">
+                    <img src="assets/stories/4.webp" id="bokehDemoImage" class="bokeh-bg" style="filter: blur(14px);" alt="Bokeh Depth Demo">
+                    <div class="bokeh-subject-badge">📸 SUBJECT IN FOCUS · DYNAMIC BOKEH BLUR</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- RAW vs Edit Color Grading Showcase -->
+    <section id="grading">
+        <div class="section-title">
+            RAW vs Cinematic Color Grade
+        </div>
+        <div class="before-after-container" id="colorGradeSlider">
+            <div class="after-layer">
+                <img src="assets/autoshow/1.webp" alt="Cinematic Edited Grade">
+                <div class="comparison-label graded">✨ KHACHAAK BRONZE GRADE</div>
+            </div>
+            <div class="before-layer" id="beforeLayer" style="width: 50%;">
+                <img src="assets/autoshow/1.webp" alt="Flat RAW Capture">
+                <div class="comparison-label raw">📷 FLAT LOG / UNEDITED RAW</div>
+            </div>
+            <div class="slider-handle" id="sliderHandle" style="left: 50%;">
+                <div class="slider-line"></div>
+                <div class="slider-button">↔</div>
+            </div>
+        </div>
     </section>
 
     <!-- Photos of the Month -->
@@ -618,7 +670,21 @@
 
         </div>
 
-    </section>
+    <!-- 35mm Analog Film Strip Showcase -->
+    <div class="film-strip-section">
+        <div class="film-strip-track">
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/street/1.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">24A · KHACHAAK 400</span></div>
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/street/2.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">25 · KHACHAAK 400</span></div>
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/street/3.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">25A · KHACHAAK 400</span></div>
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/street/4.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">26 · KHACHAAK 400</span></div>
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/autoshow/5.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">26A · KHACHAAK 400</span></div>
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/events/1.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">27 · KHACHAAK 400</span></div>
+            <!-- Duplicate loop -->
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/street/1.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">27A · KHACHAAK 400</span></div>
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/street/2.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">28 · KHACHAAK 400</span></div>
+            <div class="film-frame"><div class="sprocket-holes-top"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><img src="assets/street/3.webp" alt="Film Shot"><div class="sprocket-holes-bottom"><span class="sprocket-hole"></span><span class="sprocket-hole"></span><span class="sprocket-hole"></span></div><span class="film-frame-number">28A · KHACHAAK 400</span></div>
+        </div>
+    </div>
 
     <!-- Footer -->
 
