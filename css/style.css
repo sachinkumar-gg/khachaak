@@ -1984,12 +1984,18 @@ footer a:hover{
 }
 
 /* =========================================
-   PAGE HERO
+   PAGE HERO & SUBPAGES
 ========================================= */
 
 .page-hero{
 
-    height:60vh;
+    height:38vh;
+
+    min-height:260px;
+
+    padding-top:90px;
+
+    padding-bottom:30px;
 
     display:flex;
 
@@ -2027,11 +2033,19 @@ footer a:hover{
 
     font-family:'Bebas Neue';
 
-    font-size:6rem;
+    font-size:4.5rem;
 
-    letter-spacing:8px;
+    letter-spacing:6px;
 
     color:var(--bronze);
+    
+    margin-top:20px;
+
+    margin-bottom:0;
+}
+
+body.page section{
+    padding:40px 8% 80px 8%;
 }
 
 /* =========================================
