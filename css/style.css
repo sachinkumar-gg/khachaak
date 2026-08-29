@@ -587,24 +587,107 @@ nav ul li.active a {
 ========================================= */
 
 .hero {
-
     position: relative;
-
     width: 100%;
-
     height: 100vh;
-
     overflow: hidden;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     isolation: isolate;
-
     background: #050505;
+}
+
+/* Camera Lens Frame Overlay around Viewport */
+.camera-lens-overlay {
+    position: absolute;
+    inset: 16px;
+    border-radius: 24px;
+    border: 1px solid rgba(199, 154, 118, 0.25);
+    box-shadow: 
+        inset 0 0 60px rgba(0, 0, 0, 0.7),
+        0 0 0 10px rgba(5, 5, 5, 0.85);
+    pointer-events: none;
+    z-index: 6;
+    transition: transform 0.1s linear, opacity 0.2s ease;
+    will-change: transform, opacity;
+}
+
+.lens-reflection {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 35%, rgba(199, 154, 118, 0.03) 100%);
+}
+
+.lens-aperture-ring {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 4px 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(199, 154, 118, 0.3);
+}
+
+.aperture-marks {
+    display: flex;
+    gap: 16px;
+    font-family: 'Inter', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(199, 154, 118, 0.8);
+    letter-spacing: 2px;
+}
+
+/* REC Dot Animation */
+.hud-rec-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #ff3b30;
+    border-radius: 50%;
+    margin-right: 6px;
+    box-shadow: 0 0 8px #ff3b30;
+    animation: blinkRec 1.2s infinite alternate;
+}
+
+@keyframes blinkRec {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Scroll Hint Prompt */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 35;
+    color: rgba(199, 154, 118, 0.85);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.70rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.scroll-arrow {
+    font-size: 1.1rem;
+    animation: bounceDown 1.5s infinite;
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
 }
 
 /* =========================================
@@ -2948,109 +3031,7 @@ body.page section {
         color: var(--bronze);
     }
 
-    /* =========================================
-   CAMERA FLASH & HUD CONTROLS
-========================================= */
 
-    .camera-flash-overlay {
-        position: fixed;
-        inset: 0;
-        background: #ffffff;
-        pointer-events: none;
-        z-index: 100000;
-        opacity: 0;
-        transition: opacity 0.08s ease-out;
-    }
-
-    .camera-flash-overlay.flash-active {
-        opacity: 0.92;
-        transition: opacity 0.02s ease-in;
-    }
-
-    .hud-controls-bar {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        z-index: 5500;
-    }
-
-    .hud-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        background: rgba(10, 10, 10, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(199, 154, 118, 0.3);
-        color: var(--white);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.78rem;
-        font-weight: 500;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    }
-
-    .hud-btn:hover,
-    .hud-btn.active {
-        background: var(--bronze);
-        color: #050505;
-        border-color: var(--bronze);
-        box-shadow: 0 0 20px rgba(199, 154, 118, 0.4);
-        transform: translateY(-2px);
-    }
-
-    .hud-btn svg {
-        width: 15px;
-        height: 15px;
-        fill: currentColor;
-    }
-
-    /* Composition Grid */
-    .rule-of-thirds-grid {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 4500;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
-
-    .rule-of-thirds-grid.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .rule-of-thirds-grid::before,
-    .rule-of-thirds-grid::after {
-        content: '';
-        position: absolute;
-        background: rgba(199, 154, 118, 0.15);
-    }
-
-    .rule-of-thirds-grid::before {
-        top: 33.333%;
-        left: 0;
-        width: 100%;
-        height: 33.333%;
-        border-top: 1px dashed rgba(199, 154, 118, 0.3);
-        border-bottom: 1px dashed rgba(199, 154, 118, 0.3);
-    }
-
-    .rule-of-thirds-grid::after {
-        left: 33.333%;
-        top: 0;
-        height: 100%;
-        width: 33.333%;
-        border-left: 1px dashed rgba(199, 154, 118, 0.3);
-        border-right: 1px dashed rgba(199, 154, 118, 0.3);
-    }
 
     /* =========================================
    EXIF METADATA OVERLAYS

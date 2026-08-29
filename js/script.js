@@ -147,21 +147,51 @@ function updateHero(){
        Progress
     ------------------------- */
 
-    const start = heroHeight * 0.25;
-
-    const end = heroHeight * 0.72;
+    const start = 0;
+    const end = heroHeight * 0.70;
 
     let progress = (scroll - start) / (end - start);
-
-    progress = Math.max(0, Math.min(progress,1));
+    progress = Math.max(0, Math.min(progress, 1));
 
     const ease = 1 - Math.pow(1 - progress, 3);
 
     /* -------------------------
-       Navbar
+       Camera Zoom Through Lens Optics
+    ------------------------- */
+    const lensOverlay = document.querySelector(".camera-lens-overlay");
+    const cameraHud = document.querySelector(".hero-camera-hud");
+    const focusBox = document.querySelector(".hero-focus-box");
+    const scrollHint = document.querySelector(".hero-scroll-hint");
+
+    if (lensOverlay) {
+        // Expand lens frame outward and fade as user enters lens
+        const scaleVal = 1 + ease * 2.2;
+        const opacityVal = Math.max(0, 1 - ease * 1.6);
+        lensOverlay.style.transform = `scale(${scaleVal})`;
+        lensOverlay.style.opacity = opacityVal;
+    }
+
+    if (cameraHud) {
+        // Fade HUD stats as user scrolls inside
+        const hudOpacity = Math.max(0, 1 - ease * 1.8);
+        cameraHud.style.opacity = hudOpacity;
+    }
+
+    if (focusBox) {
+        const boxOpacity = Math.max(0, 1 - ease * 2.2);
+        focusBox.style.opacity = boxOpacity;
+    }
+
+    if (scrollHint) {
+        const hintOpacity = Math.max(0, 1 - progress * 4);
+        scrollHint.style.opacity = hintOpacity;
+    }
+
+    /* -------------------------
+       Navbar Visibility
     ------------------------- */
 
-    if(progress > 0.05){
+    if(progress > 0.12){
 
         nav.classList.add("visible");
         nav.classList.add("scrolled");
@@ -174,27 +204,27 @@ function updateHero(){
     }
 
     /* -------------------------
-       Hero Content
+       Hero Content & Background Optics
     ------------------------- */
 
     if(heroRight){
 
-        heroRight.style.opacity = 1 - ease;
+        heroRight.style.opacity = Math.max(0, 1 - ease * 1.4);
 
         heroRight.style.transform =
-            `translateY(${-40*ease}px)`;
+            `translateY(${-35*ease}px)`;
 
     }
 
     if(heroBg){
 
         heroBg.style.transform =
-            `scale(${1+ease*0.06})`;
+            `scale(${1 + ease * 0.12})`;
 
     }
 
     /* -------------------------
-       Logo
+       Logo Movement
     ------------------------- */
 
     const x =
@@ -795,166 +825,6 @@ window.addEventListener("mousemove",(e)=>{
 });
 
 /* =========================================
-   CAMERA SOUND ENGINE (Web Audio API)
-========================================= */
-
-let audioCtx = null;
-let soundEnabled = true;
-
-function initAudio() {
-    if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) {
-            audioCtx = new AudioContext();
-        }
-    }
-}
-
-function playShutterSound() {
-    if (!soundEnabled) return;
-    try {
-        initAudio();
-        if (!audioCtx) return;
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        const now = audioCtx.currentTime;
-
-        // Mechanical Mirror Flip (Noise burst)
-        const bufferSize = audioCtx.sampleRate * 0.05;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-            data[i] = Math.random() * 2 - 1;
-        }
-
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.setValueAtTime(1200, now);
-        filter.Q.setValueAtTime(3, now);
-
-        const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.4, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.045);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        noise.start(now);
-        noise.stop(now + 0.05);
-
-        // Secondary Shutter Snap (Curtain Click)
-        setTimeout(() => {
-            if (!audioCtx) return;
-            const now2 = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator();
-            const oscGain = audioCtx.createGain();
-
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(320, now2);
-            osc.frequency.exponentialRampToValueAtTime(80, now2 + 0.03);
-
-            oscGain.gain.setValueAtTime(0.3, now2);
-            oscGain.gain.exponentialRampToValueAtTime(0.01, now2 + 0.03);
-
-            osc.connect(oscGain);
-            oscGain.connect(audioCtx.destination);
-
-            osc.start(now2);
-            osc.stop(now2 + 0.035);
-        }, 35);
-    } catch (e) {
-        console.warn('Audio play error', e);
-    }
-}
-
-function triggerCameraFlash() {
-    let flashEl = document.querySelector('.camera-flash-overlay');
-    if (!flashEl) {
-        flashEl = document.createElement('div');
-        flashEl.className = 'camera-flash-overlay';
-        document.body.appendChild(flashEl);
-    }
-    flashEl.classList.add('flash-active');
-    setTimeout(() => {
-        flashEl.classList.remove('flash-active');
-    }, 120);
-}
-
-/* Wire shutter click to lightbox and buttons */
-document.addEventListener('click', (e) => {
-    if (e.target.closest('.gallery-item') || e.target.closest('.story-card img') || e.target.closest('.hud-btn') || e.target.closest('.event-register-btn')) {
-        playShutterSound();
-    }
-});
-
-/* Lightbox enhancement with camera flash & sound */
-document.querySelectorAll('.gallery-item img, .month-img-wrap img').forEach(img => {
-    img.addEventListener('click', () => {
-        triggerCameraFlash();
-    });
-});
-
-/* =========================================
-   CAMERA HUD CONTROLS
-========================================= */
-
-function setupHUDControls() {
-    let hudBar = document.querySelector('.hud-controls-bar');
-    if (!hudBar) {
-        hudBar = document.createElement('div');
-        hudBar.className = 'hud-controls-bar';
-        hudBar.innerHTML = `
-            <button class="hud-btn shutter-sound-btn active" title="Toggle Shutter Click Sound">
-                <span>🔊 SHUTTER SOUND</span>
-            </button>
-            <button class="hud-btn rule-grid-btn" title="Toggle Rule of Thirds Grid">
-                <span>📐 GRID</span>
-            </button>
-        `;
-        document.body.appendChild(hudBar);
-    }
-
-    const soundBtn = hudBar.querySelector('.shutter-sound-btn');
-    if (soundBtn) {
-        soundBtn.addEventListener('click', () => {
-            soundEnabled = !soundEnabled;
-            if (soundEnabled) {
-                soundBtn.classList.add('active');
-                soundBtn.innerHTML = '<span>🔊 SHUTTER SOUND</span>';
-                playShutterSound();
-            } else {
-                soundBtn.classList.remove('active');
-                soundBtn.innerHTML = '<span>MUTE SHUTTER</span>';
-            }
-        });
-    }
-
-    const gridBtn = hudBar.querySelector('.rule-grid-btn');
-    let gridOverlay = document.querySelector('.rule-of-thirds-grid');
-    if (!gridOverlay) {
-        gridOverlay = document.createElement('div');
-        gridOverlay.className = 'rule-of-thirds-grid';
-        document.body.appendChild(gridOverlay);
-    }
-
-    if (gridBtn) {
-        gridBtn.addEventListener('click', () => {
-            gridOverlay.classList.toggle('active');
-            gridBtn.classList.toggle('active');
-        });
-    }
-}
-
-document.addEventListener('DOMContentLoaded', setupHUDControls);
-setupHUDControls();
-
-/* =========================================
    EVENTS FILTERING & MODAL
 ========================================= */
 
@@ -1006,8 +876,6 @@ if (modalClose && modalBackdrop) {
 if (modalForm) {
     modalForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        playShutterSound();
-        triggerCameraFlash();
         alert('🎉 Registration Successful! See you through the lens.');
         if (modalBackdrop) modalBackdrop.classList.remove('active');
         modalForm.reset();
@@ -1063,7 +931,6 @@ document.querySelectorAll('.like-btn').forEach((btn, idx) => {
             btn.classList.add('liked');
             localStorage.setItem(storageKey, likes);
             countEl.textContent = likes;
-            playShutterSound();
         }
     });
 });
