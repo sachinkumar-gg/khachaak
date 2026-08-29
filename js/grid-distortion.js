@@ -41,6 +41,17 @@
     gl_FragColor = color;
   }`;
 
+  function createPlaceholderTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 2;
+    canvas.height = 2;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#151515';
+    ctx.fillRect(0, 0, 2, 2);
+    const texture = new THREE.CanvasTexture(canvas);
+    return texture;
+  }
+
   function initGridDistortion(container, options = {}) {
     if (!container || typeof THREE === 'undefined') return null;
 
@@ -75,32 +86,19 @@
     const camera = new THREE.OrthographicCamera(0, 0, 0, 0, -1000, 1000);
     camera.position.z = 2;
 
+    const dummyTexture = createPlaceholderTexture();
+
     const uniforms = {
       time: { value: 0 },
-      resolution: { value: new THREE.Vector4(1, 1, 1, 1) },
-      uTexture: { value: null },
+      resolution: { value: new THREE.Vector4(1, 1, 1920, 1080) },
+      uTexture: { value: dummyTexture },
       uDataTexture: { value: null }
     };
 
     let imgWidth = 1920;
     let imgHeight = 1080;
 
-    const textureLoader = new THREE.TextureLoader();
-    textureLoader.load(imageSrc, (texture) => {
-      texture.minFilter = THREE.LinearFilter;
-      texture.magFilter = THREE.LinearFilter;
-      texture.wrapS = THREE.MirroredRepeatWrapping;
-      texture.wrapT = THREE.MirroredRepeatWrapping;
-      uniforms.uTexture.value = texture;
-      if (texture.image) {
-        imgWidth = texture.image.width || 1920;
-        imgHeight = texture.image.height || 1080;
-      }
-      handleResize();
-    });
-
     const size = grid;
-    // Initialize data array to 0 float values so initial distortion is ZERO (clear visible picture)
     const data = new Float32Array(4 * size * size);
     data.fill(0);
 
@@ -125,6 +123,21 @@
     const geometry = new THREE.PlaneGeometry(1, 1, size - 1, size - 1);
     const plane = new THREE.Mesh(geometry, material);
     scene.add(plane);
+
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(imageSrc, (texture) => {
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.wrapS = THREE.MirroredRepeatWrapping;
+      texture.wrapT = THREE.MirroredRepeatWrapping;
+      uniforms.uTexture.value = texture;
+      material.needsUpdate = true;
+      if (texture.image) {
+        imgWidth = texture.image.width || 1920;
+        imgHeight = texture.image.height || 1080;
+      }
+      handleResize();
+    });
 
     function handleResize() {
       if (!container || !renderer || !camera) return;
@@ -221,7 +234,6 @@
         }
       }
 
-      // Decay velocity slightly each frame so it stops when cursor stops moving
       mouseState.vX *= 0.85;
       mouseState.vY *= 0.85;
 
@@ -251,6 +263,7 @@
           texture.wrapS = THREE.MirroredRepeatWrapping;
           texture.wrapT = THREE.MirroredRepeatWrapping;
           uniforms.uTexture.value = texture;
+          material.needsUpdate = true;
           if (texture.image) {
             imgWidth = texture.image.width || 1920;
             imgHeight = texture.image.height || 1080;

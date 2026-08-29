@@ -368,14 +368,7 @@ document.querySelectorAll(".mobile-menu a").forEach(link=>{
    HERO GRID DISTORTION (React Bits WebGL)
 ========================================= */
 
-const heroImages = [
-    "assets/street/1.webp",
-    "assets/street/2.webp",
-    "assets/street/3.webp",
-    "assets/street/4.webp"
-];
-
-let heroIndex = 0;
+const heroImage = "assets/street/3.webp";
 const heroBackground = document.querySelector(".hero-bg");
 let distortionInstance = null;
 
@@ -386,23 +379,11 @@ if (heroBackground) {
             mouse: 0.1,
             strength: 0.15,
             relaxation: 0.9,
-            imageSrc: heroImages[0]
+            imageSrc: heroImage
         });
     } else {
-        heroBackground.style.backgroundImage = `url("${heroImages[0]}")`;
+        heroBackground.style.backgroundImage = `url("${heroImage}")`;
     }
-
-    function changeHeroImage() {
-        if (!heroBackground) return;
-        heroIndex = (heroIndex + 1) % heroImages.length;
-        if (distortionInstance && distortionInstance.updateImage) {
-            distortionInstance.updateImage(heroImages[heroIndex]);
-        } else {
-            heroBackground.style.backgroundImage = `url("${heroImages[heroIndex]}")`;
-        }
-    }
-
-    setInterval(changeHeroImage, 7000);
 }
 
 /* =========================================
