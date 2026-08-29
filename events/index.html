@@ -13,164 +13,147 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body class="page">
 
     <!-- Viewfinder Corners -->
-
     <div class="viewfinder top-left"></div>
     <div class="viewfinder top-right"></div>
     <div class="viewfinder bottom-left"></div>
     <div class="viewfinder bottom-right"></div>
 
     <!-- Navbar -->
+    <nav>
+        <a href="/" class="logo-target" aria-label="Khachaak Home">
+            <img src="/assets/logos/logo.webp" loading="lazy" alt="Khachaak">
+        </a>
+        <ul>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#stories">Featured Stories</a></li>
+            <li><a href="/#gallery">Wall of Frames</a></li>
+            <li><a href="/#theme">Theme</a></li>
+            <li><a href="/events/" class="active">Events</a></li>
+            <li><a href="/gallery/">Gallery</a></li>
+            <li><a href="/team/">Team</a></li>
+            <li><a href="/advisory/">Advisory</a></li>
+            <li><a href="/#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
-<nav>
-
-    <a href="/" class="logo-target" aria-label="Khachaak Home">
-
-        <img
-            src="/assets/logos/logo.webp"
-            loading="lazy"
-            alt="Khachaak">
-
-    </a>
-
-    <ul>
-
-        <li><a href="/#about">About</a></li>
-
-        <li><a href="/#stories">Featured Stories</a></li>
-
-        <li><a href="/#gallery">Wall of Frames</a></li>
-
-        <li><a href="/#theme">Theme</a></li>
-
-        <li><a href="/events/">Events</a></li>
-
-        <li><a href="/gallery/">Gallery</a></li>
-
-        <li><a href="/team/">Team</a></li>
-
-        <li><a href="/advisory/">Advisory</a></li>
-
-        <li><a href="/#contact">Contact</a></li>
-
-    </ul>
-
-    <div class="hamburger">
-
-        <span></span>
-
-        <span></span>
-
-        <span></span>
-
+    <div class="mobile-menu">
+        <button class="close-menu">&times;</button>
+        <img src="/assets/logos/logo.webp" loading="lazy" class="mobile-menu-logo" alt="Khachaak">
+        <a href="/#about">About</a>
+        <a href="/#stories">Featured Stories</a>
+        <a href="/#gallery">Wall of Frames</a>
+        <a href="/#theme">Theme</a>
+        <a href="/events/">Events</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/team/">Team</a>
+        <a href="/advisory/">Advisory</a>
+        <a href="/#contact">Contact</a>
     </div>
 
-</nav>
-
-   <div class="mobile-menu">
-
-    <button class="close-menu">&times;</button>
-
-        <img src="/assets/logos/logo.webp"
-            loading="lazy"
-            class="mobile-menu-logo"
-            alt="Khachaak">
-       
-    <a href="/#about">About</a>
-    <a href="/#stories">Featured Stories</a>
-    <a href="/#gallery">Wall of Frames</a>
-    <a href="/#theme">Theme</a>
-    <a href="/events/">Events</a>
-    <a href="/gallery/">Gallery</a>
-    <a href="/team/">Team</a>
-    <a href="/advisory/">Advisory</a>
-    <a href="/#contact">Contact</a>
-
-</div>
-
     <!-- Hero -->
-
     <section class="page-hero">
-
         <h1>EVENTS</h1>
-
     </section>
 
-    <!-- Events -->
-
+    <!-- Events Container Section -->
     <section>
+        <div class="events-container">
 
-        <div class="events-grid">
-
-            <div class="event-card">
-
-                <img src="/assets/autoshow/5.webp" loading="lazy" alt="Autoshow">
-
-                <h3>Autoshow</h3>
-
-                <p>
-                    A celebration of automotive design, engineering, and performance,
-                    bringing together iconic machines and passionate enthusiasts under
-                    one roof. Explore a curated showcase of cars and bikes while
-                    capturing their finest details through your lens.
-                </p>
-
+            <!-- Event Category Filters -->
+            <div class="event-filters">
+                <button class="event-filter-btn active" data-filter="all">All Events</button>
+                <button class="event-filter-btn" data-filter="flagship">Flagship Fests</button>
+                <button class="event-filter-btn" data-filter="photowalk">Photowalks</button>
+                <button class="event-filter-btn" data-filter="workshop">Workshops & Masterclasses</button>
             </div>
 
-            <div class="event-card">
+            <!-- Events Grid -->
+            <div class="events-grid">
 
-                <img src="/assets/events/event2.webp" loading="lazy" alt="Photowalk">
+                <div class="event-card" data-category="flagship">
+                    <div class="event-card-image-wrap">
+                        <img src="/assets/autoshow/5.webp" loading="lazy" alt="Autoshow">
+                        <span class="event-card-badge upcoming">Upcoming</span>
+                    </div>
+                    <div class="event-card-content">
+                        <div class="event-card-meta">
+                            <span>📅 Date: TBD</span>
+                            <span>📍 MPSTME Quadrangle</span>
+                        </div>
+                        <h3>Autoshow</h3>
+                        <p>
+                            A celebration of automotive design, engineering, and performance, bringing together iconic machines and passionate enthusiasts under one roof. Explore a curated showcase of cars and bikes while capturing their finest details through your lens.
+                        </p>
+                        <div class="event-card-footer">
+                            <span class="event-exif-chip">1/1000s · f/2.8 · ISO 200</span>
+                        </div>
+                    </div>
+                </div>
 
-                <h3>Photowalk</h3>
+                <div class="event-card" data-category="photowalk">
+                    <div class="event-card-image-wrap">
+                        <img src="/assets/events/event2.webp" loading="lazy" alt="Photowalk">
+                        <span class="event-card-badge upcoming">Upcoming</span>
+                    </div>
+                    <div class="event-card-content">
+                        <div class="event-card-meta">
+                            <span>📅 Sept 2026</span>
+                            <span>📍 South Mumbai Heritage Trail</span>
+                        </div>
+                        <h3>Khachaak Photowalk</h3>
+                        <p>
+                            Step beyond the classroom and into the world of visual storytelling. Join fellow photographers on an immersive walk to explore perspectives, sharpen your skills, and capture compelling moments in real-world settings.
+                        </p>
+                        <div class="event-card-footer">
+                            <span class="event-exif-chip">1/250s · f/4.0 · ISO 100</span>
+                        </div>
+                    </div>
+                </div>
 
-                <p>
-                    Step beyond the classroom and into the world of visual storytelling.
-                    Join fellow photographers on an immersive walk to explore perspectives,
-                    sharpen your skills, and capture compelling moments in real-world settings.
-                </p>
-
-            </div>
-
-            <div class="event-card">
-
-                <img src="/assets/events/event3.webp" loading="lazy" alt="Aperture">
-
-                <h3>Aperture</h3>
-
-                <p>
-                    A two-day photography experience featuring a hands-on workshop on
-                    Day 1, followed by an exhibition and competition on Day 2 to
-                    showcase creativity and talent.
-                </p>
+                <div class="event-card" data-category="workshop">
+                    <div class="event-card-image-wrap">
+                        <img src="/assets/events/event3.webp" loading="lazy" alt="Aperture">
+                        <span class="event-card-badge">Completed</span>
+                    </div>
+                    <div class="event-card-content">
+                        <div class="event-card-meta">
+                            <span>📅 August 2026</span>
+                            <span>📍 Seminar Hall 3</span>
+                        </div>
+                        <h3>Aperture Masterclass</h3>
+                        <p>
+                            A two-day photography experience featuring a hands-on workshop on Day 1, followed by an exhibition and competition on Day 2 to showcase creativity and talent.
+                        </p>
+                        <div class="event-card-footer">
+                            <span class="event-exif-chip">1/160s · f/1.8 · ISO 400</span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
         </div>
-
     </section>
 
     <!-- Footer -->
-
     <footer>
-
         <img src="/assets/logos/logo.webp" loading="lazy" alt="Khachaak">
-
-        <p>
-            Official Photography Club of NMIMS MPSTME
-        </p>
-
-        <a href="https://instagram.com/khachaak.mpstme" target="_blank">
-            @khachaak.mpstme
-        </a>
-
+        <p>Official Photography Club of NMIMS MPSTME</p>
+        <a href="https://instagram.com/khachaak.mpstme" target="_blank">@khachaak.mpstme</a>
     </footer>
 
     <script src="/js/script.js"></script>
-
 </body>
 
 </html>

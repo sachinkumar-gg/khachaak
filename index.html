@@ -55,13 +55,13 @@
 
         <li><a href="#theme">Theme</a></li>
 
-        <li><a href="/events/">Events</a></li>
+        <li><a href="events.html">Events</a></li>
 
-        <li><a href="/gallery/">Gallery</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
 
-        <li><a href="/team/">Team</a></li>
+        <li><a href="team.html">Team</a></li>
 
-        <li><a href="/advisory/">Advisory</a></li>
+        <li><a href="advisory.html">Advisory</a></li>
 
         <li><a href="#contact">Contact</a></li>
 
@@ -92,10 +92,10 @@
     <a href="#stories">Featured Stories</a>
     <a href="#gallery">Wall of Frames</a>
     <a href="#theme">Theme</a>
-    <a href="/events/">Events</a>
-    <a href="/gallery/">Gallery</a>
-    <a href="/team/">Team</a>
-    <a href="/advisory/">Advisory</a>
+    <a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="team.html">Team</a>
+    <a href="advisory.html">Advisory</a>
     <a href="#contact">Contact</a>
 
 </div>
@@ -105,27 +105,38 @@
 <section class="hero" id="top">
 
     <!-- Background Layers -->
-
     <div class="hero-bg"></div>
-
     <div class="hero-overlay"></div>
-
     <div class="hero-noise"></div>
-
     <div class="hero-light-leak"></div>
 
-    <!-- Camera HUD -->
+    <!-- Viewfinder Lens Glass Optics Overlay -->
+    <div class="camera-lens-overlay">
+        <div class="lens-reflection"></div>
+        <div class="lens-aperture-ring">
+            <div class="aperture-marks">
+                <span>f/1.4</span>
+                <span>f/2.8</span>
+                <span>f/4.0</span>
+                <span>f/5.6</span>
+                <span>f/8.0</span>
+                <span>f/11</span>
+                <span>f/16</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- Camera Viewfinder HUD -->
     <div class="hero-camera-hud">
-
         <div class="hud-top-left">
-            <span>REC</span>
+            <span class="hud-rec-dot"></span>
+            <span>REC 4K 60FPS</span>
         </div>
 
         <div class="hud-top-right">
             <span>ISO 100</span>
             <span>F2.8</span>
-            <span>1/200</span>
+            <span>1/200s</span>
             <span>RAW</span>
         </div>
 
@@ -134,73 +145,46 @@
         </div>
 
         <div class="hud-bottom-right">
-            <span>EST. 2023</span>
+            <span>35mm F1.4 DG DN</span>
         </div>
-
     </div>
 
-    <!-- Focus Box -->
-
+    <!-- Focus Box Reticle -->
     <div class="hero-focus-box"></div>
 
-    <!-- Hero Logo Link -->
-
-    <a href="#top" id="heroLogoLink" aria-label="Khachaak Home">
-           <img src="assets/logos/logo.webp"
-               class="hero-logo"
-               id="heroLogo"
-               loading="eager"
-               fetchpriority="high"
-               decoding="async"
-               alt="Khachaak">
-    </a>
-
-    <!-- Hero Content -->
-
+    <!-- Hero Content Wrapper -->
     <div class="hero-wrapper">
 
-        <!-- Left -->
-
+        <!-- Left Slot for Logo -->
         <div class="hero-left">
             <div class="logo-slot"></div>
         </div>
 
-        <!-- Right -->
-
+        <!-- Right Copy & CTAs -->
         <div class="hero-right">
 
             <h1 class="hero-brand">
-
                 Khachaak
-
             </h1>
 
             <h2 id="heroSubtitle">
-
                 Capture.
-
             </h2>
 
             <p>
-
                 Official Photography Club of NMIMS MPSTME
-
             </p>
 
             <div class="hero-buttons">
 
                 <a href="#gallery" class="btn">
-
                     Explore Gallery
-
                 </a>
 
                 <a href="https://chat.whatsapp.com/E1NaZGRyD2c3SMB0AtUlTT?s=cl&p=i&mlu=1&amv=2"
                    target="_blank"
                    class="btn btn-outline">
-
                     Join Khachaak
-
                 </a>
 
             </div>
@@ -208,13 +192,28 @@
             <a href="https://instagram.com/khachaak.mpstme"
                target="_blank"
                class="hero-instagram">
-
                 @khachaak.mpstme ↗
-
             </a>
 
         </div>
 
+    </div>
+
+    <!-- Hero Logo Link -->
+    <a href="#top" id="heroLogoLink" aria-label="Khachaak Home">
+        <img src="assets/logos/logo.webp"
+            class="hero-logo"
+            id="heroLogo"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            alt="Khachaak">
+    </a>
+
+    <!-- Scroll Indicator -->
+    <div class="hero-scroll-hint">
+        <span>SCROLL TO ENTER</span>
+        <div class="scroll-arrow">↓</div>
     </div>
 
 </section>

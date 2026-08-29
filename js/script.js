@@ -147,21 +147,51 @@ function updateHero(){
        Progress
     ------------------------- */
 
-    const start = heroHeight * 0.25;
-
-    const end = heroHeight * 0.72;
+    const start = 0;
+    const end = heroHeight * 0.70;
 
     let progress = (scroll - start) / (end - start);
-
-    progress = Math.max(0, Math.min(progress,1));
+    progress = Math.max(0, Math.min(progress, 1));
 
     const ease = 1 - Math.pow(1 - progress, 3);
 
     /* -------------------------
-       Navbar
+       Camera Zoom Through Lens Optics
+    ------------------------- */
+    const lensOverlay = document.querySelector(".camera-lens-overlay");
+    const cameraHud = document.querySelector(".hero-camera-hud");
+    const focusBox = document.querySelector(".hero-focus-box");
+    const scrollHint = document.querySelector(".hero-scroll-hint");
+
+    if (lensOverlay) {
+        // Expand lens frame outward and fade as user enters lens
+        const scaleVal = 1 + ease * 2.2;
+        const opacityVal = Math.max(0, 1 - ease * 1.6);
+        lensOverlay.style.transform = `scale(${scaleVal})`;
+        lensOverlay.style.opacity = opacityVal;
+    }
+
+    if (cameraHud) {
+        // Fade HUD stats as user scrolls inside
+        const hudOpacity = Math.max(0, 1 - ease * 1.8);
+        cameraHud.style.opacity = hudOpacity;
+    }
+
+    if (focusBox) {
+        const boxOpacity = Math.max(0, 1 - ease * 2.2);
+        focusBox.style.opacity = boxOpacity;
+    }
+
+    if (scrollHint) {
+        const hintOpacity = Math.max(0, 1 - progress * 4);
+        scrollHint.style.opacity = hintOpacity;
+    }
+
+    /* -------------------------
+       Navbar Visibility
     ------------------------- */
 
-    if(progress > 0.05){
+    if(progress > 0.12){
 
         nav.classList.add("visible");
         nav.classList.add("scrolled");
@@ -174,27 +204,27 @@ function updateHero(){
     }
 
     /* -------------------------
-       Hero Content
+       Hero Content & Background Optics
     ------------------------- */
 
     if(heroRight){
 
-        heroRight.style.opacity = 1 - ease;
+        heroRight.style.opacity = Math.max(0, 1 - ease * 1.4);
 
         heroRight.style.transform =
-            `translateY(${-40*ease}px)`;
+            `translateY(${-35*ease}px)`;
 
     }
 
     if(heroBg){
 
         heroBg.style.transform =
-            `scale(${1+ease*0.06})`;
+            `scale(${1 + ease * 0.12})`;
 
     }
 
     /* -------------------------
-       Logo
+       Logo Movement
     ------------------------- */
 
     const x =
@@ -794,4 +824,135 @@ window.addEventListener("mousemove",(e)=>{
 
 });
 
+/* =========================================
+   EVENTS FILTERING & MODAL
+========================================= */
+
+const eventFilterBtns = document.querySelectorAll('.event-filter-btn');
+const eventCards = document.querySelectorAll('.event-card');
+
+eventFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        eventFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        eventCards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+                card.style.display = 'flex';
+                card.style.animation = 'fadeInUp 0.4s ease forwards';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+/* Event Registration Modal */
+const registerBtns = document.querySelectorAll('.event-register-btn');
+const modalBackdrop = document.querySelector('.modal-backdrop');
+const modalClose = document.querySelector('.modal-close-btn');
+const modalForm = document.querySelector('.modal-form');
+const eventTitleTarget = document.getElementById('modalEventTitle');
+
+registerBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const eventName = btn.dataset.eventName || 'Khachaak Event';
+        if (eventTitleTarget) eventTitleTarget.textContent = `Register for ${eventName}`;
+        if (modalBackdrop) modalBackdrop.classList.add('active');
+    });
+});
+
+if (modalClose && modalBackdrop) {
+    modalClose.addEventListener('click', () => {
+        modalBackdrop.classList.remove('active');
+    });
+
+    modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) modalBackdrop.classList.remove('active');
+    });
+}
+
+if (modalForm) {
+    modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('🎉 Registration Successful! See you through the lens.');
+        if (modalBackdrop) modalBackdrop.classList.remove('active');
+        modalForm.reset();
+    });
+}
+
+/* =========================================
+   LIVE COUNTDOWN TIMER
+========================================= */
+
+function updateCountdown() {
+    const daysEl = document.getElementById('timerDays');
+    const hoursEl = document.getElementById('timerHours');
+    const minsEl = document.getElementById('timerMins');
+    const secsEl = document.getElementById('timerSecs');
+
+    if (!daysEl) return;
+
+    // Target date: Aperture 2026 flagship event (Sept 25, 2026)
+    const targetDate = new Date('2026-09-25T10:00:00+05:30').getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minsEl.textContent = String(mins).padStart(2, '0');
+        secsEl.textContent = String(secs).padStart(2, '0');
+    }
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* =========================================
+   PHOTOS OF THE MONTH LIKES
+========================================= */
+
+document.querySelectorAll('.like-btn').forEach((btn, idx) => {
+    const countEl = btn.querySelector('.like-count');
+    const storageKey = `khachaak_like_${idx}`;
+    let likes = parseInt(localStorage.getItem(storageKey) || (142 + idx * 37), 10);
+    countEl.textContent = likes;
+
+    btn.addEventListener('click', () => {
+        if (!btn.classList.contains('liked')) {
+            likes++;
+            btn.classList.add('liked');
+            localStorage.setItem(storageKey, likes);
+            countEl.textContent = likes;
+        }
+    });
+});
+
+/* =========================================
+   3D TILT EFFECT FOR CARDS
+========================================= */
+
+document.querySelectorAll('.story-card, .event-card, .month-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const tiltX = (y / (rect.height / 2)) * -6;
+        const tiltY = (x / (rect.width / 2)) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+});
+
 })();
+
