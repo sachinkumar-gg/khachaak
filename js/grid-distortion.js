@@ -24,8 +24,21 @@
 
   void main() {
     vec2 uv = vUv;
+
+    // Cover aspect ratio adjustment
+    if (resolution.z > 0.0 && resolution.w > 0.0) {
+      float containerAspect = resolution.x / resolution.y;
+      float imageAspect = resolution.z / resolution.w;
+      if (containerAspect > imageAspect) {
+        uv.y = (uv.y - 0.5) * (imageAspect / containerAspect) + 0.5;
+      } else {
+        uv.x = (uv.x - 0.5) * (containerAspect / imageAspect) + 0.5;
+      }
+    }
+
     vec4 offset = texture2D(uDataTexture, vUv);
-    gl_FragColor = texture2D(uTexture, uv - 0.02 * offset.rg);
+    vec4 color = texture2D(uTexture, uv - 0.02 * offset.rg);
+    gl_FragColor = color;
   }`;
 
   function initGridDistortion(container, options = {}) {
@@ -47,7 +60,7 @@
     });
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x050505, 1);
 
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
@@ -64,27 +77,32 @@
 
     const uniforms = {
       time: { value: 0 },
-      resolution: { value: new THREE.Vector4() },
+      resolution: { value: new THREE.Vector4(1, 1, 1, 1) },
       uTexture: { value: null },
       uDataTexture: { value: null }
     };
+
+    let imgWidth = 1920;
+    let imgHeight = 1080;
 
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(imageSrc, (texture) => {
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
-      texture.wrapS = THREE.ClampToEdgeWrapping;
-      texture.wrapT = THREE.ClampToEdgeWrapping;
+      texture.wrapS = THREE.MirroredRepeatWrapping;
+      texture.wrapT = THREE.MirroredRepeatWrapping;
       uniforms.uTexture.value = texture;
+      if (texture.image) {
+        imgWidth = texture.image.width || 1920;
+        imgHeight = texture.image.height || 1080;
+      }
       handleResize();
     });
 
     const size = grid;
+    // Initialize data array to 0 float values so initial distortion is ZERO (clear visible picture)
     const data = new Float32Array(4 * size * size);
-    for (let i = 0; i < size * size; i++) {
-      data[i * 4] = Math.random() * 255 - 125;
-      data[i * 4 + 1] = Math.random() * 255 - 125;
-    }
+    data.fill(0);
 
     const dataTexture = new THREE.DataTexture(
       data,
@@ -133,14 +151,14 @@
       camera.bottom = -frustumHeight / 2;
       camera.updateProjectionMatrix();
 
-      uniforms.resolution.value.set(width, height, 1, 1);
+      uniforms.resolution.value.set(width, height, imgWidth, imgHeight);
     }
 
     const mouseState = {
-      x: 0,
-      y: 0,
-      prevX: 0,
-      prevY: 0,
+      x: 0.5,
+      y: 0.5,
+      prevX: 0.5,
+      prevY: 0.5,
       vX: 0,
       vY: 0
     };
@@ -159,10 +177,6 @@
         dataTexture.needsUpdate = true;
       }
       Object.assign(mouseState, {
-        x: 0,
-        y: 0,
-        prevX: 0,
-        prevY: 0,
         vX: 0,
         vY: 0
       });
@@ -192,18 +206,24 @@
       const gridMouseY = size * mouseState.y;
       const maxDist = size * mouse;
 
-      for (let i = 0; i < size; i++) {
-        for (let j = 0; j < size; j++) {
-          const distSq =
-            Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
-          if (distSq < maxDist * maxDist) {
-            const index = 4 * (i + size * j);
-            const power = Math.min(maxDist / Math.sqrt(distSq), 10);
-            dData[index] += strength * 100 * mouseState.vX * power;
-            dData[index + 1] -= strength * 100 * mouseState.vY * power;
+      if (Math.abs(mouseState.vX) > 0.0001 || Math.abs(mouseState.vY) > 0.0001) {
+        for (let i = 0; i < size; i++) {
+          for (let j = 0; j < size; j++) {
+            const distSq =
+              Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
+            if (distSq < maxDist * maxDist) {
+              const index = 4 * (i + size * j);
+              const power = Math.min(maxDist / (Math.sqrt(distSq) + 0.001), 10);
+              dData[index] += strength * 100 * mouseState.vX * power;
+              dData[index + 1] -= strength * 100 * mouseState.vY * power;
+            }
           }
         }
       }
+
+      // Decay velocity slightly each frame so it stops when cursor stops moving
+      mouseState.vX *= 0.85;
+      mouseState.vY *= 0.85;
 
       dataTexture.needsUpdate = true;
       renderer.render(scene, camera);
@@ -228,7 +248,13 @@
         textureLoader.load(newSrc, (texture) => {
           texture.minFilter = THREE.LinearFilter;
           texture.magFilter = THREE.LinearFilter;
+          texture.wrapS = THREE.MirroredRepeatWrapping;
+          texture.wrapT = THREE.MirroredRepeatWrapping;
           uniforms.uTexture.value = texture;
+          if (texture.image) {
+            imgWidth = texture.image.width || 1920;
+            imgHeight = texture.image.height || 1080;
+          }
           handleResize();
         });
       }
