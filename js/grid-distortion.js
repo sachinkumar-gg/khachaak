@@ -38,7 +38,8 @@
 
     vec4 offset = texture2D(uDataTexture, vUv);
     vec4 color = texture2D(uTexture, uv - 0.02 * offset.rg);
-    gl_FragColor = color;
+    // Darken image slightly (0.65) so hero copy and elements are high-contrast and easy to read
+    gl_FragColor = vec4(color.rgb * 0.65, color.a);
   }`;
 
   function createPlaceholderTexture() {
