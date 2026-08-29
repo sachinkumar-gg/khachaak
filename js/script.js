@@ -365,66 +365,44 @@ document.querySelectorAll(".mobile-menu a").forEach(link=>{
 
 
 /* =========================================
-   HERO SLIDESHOW
+   HERO GRID DISTORTION (React Bits WebGL)
 ========================================= */
 
 const heroImages = [
-
     "assets/street/1.webp",
     "assets/street/2.webp",
     "assets/street/3.webp",
     "assets/street/4.webp"
-
 ];
 
 let heroIndex = 0;
-
 const heroBackground = document.querySelector(".hero-bg");
+let distortionInstance = null;
 
-function changeHeroImage(){
-
-    if(!heroBackground) return;
-
-    heroBackground.style.transition =
-        "opacity .8s ease, transform 8s ease";
-
-    heroBackground.style.opacity = "0";
-
-    setTimeout(()=>{
-
-        heroIndex =
-            (heroIndex+1)%heroImages.length;
-
-        heroBackground.style.backgroundImage =
-            `url("${heroImages[heroIndex]}")`;
-
-        heroBackground.style.opacity = "1";
-
-        heroBackground.style.transform =
-            "scale(1.04)";
-
-        requestAnimationFrame(()=>{
-
-            setTimeout(()=>{
-
-                heroBackground.style.transform =
-                    "scale(1)";
-
-            },50);
-
+if (heroBackground) {
+    if (typeof GridDistortion !== "undefined") {
+        distortionInstance = GridDistortion.init(heroBackground, {
+            grid: 10,
+            mouse: 0.1,
+            strength: 0.15,
+            relaxation: 0.9,
+            imageSrc: heroImages[0]
         });
+    } else {
+        heroBackground.style.backgroundImage = `url("${heroImages[0]}")`;
+    }
 
-    },800);
+    function changeHeroImage() {
+        if (!heroBackground) return;
+        heroIndex = (heroIndex + 1) % heroImages.length;
+        if (distortionInstance && distortionInstance.updateImage) {
+            distortionInstance.updateImage(heroImages[heroIndex]);
+        } else {
+            heroBackground.style.backgroundImage = `url("${heroImages[heroIndex]}")`;
+        }
+    }
 
-}
-
-if(heroBackground){
-
-    heroBackground.style.backgroundImage =
-        `url("${heroImages[0]}")`;
-
-    setInterval(changeHeroImage,7000);
-
+    setInterval(changeHeroImage, 7000);
 }
 
 /* =========================================
