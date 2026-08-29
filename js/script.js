@@ -155,37 +155,7 @@ function updateHero(){
 
     const ease = 1 - Math.pow(1 - progress, 3);
 
-    /* -------------------------
-       Camera Zoom Through Lens Optics
-    ------------------------- */
-    const lensOverlay = document.querySelector(".camera-lens-overlay");
-    const cameraHud = document.querySelector(".hero-camera-hud");
-    const focusBox = document.querySelector(".hero-focus-box");
-    const scrollHint = document.querySelector(".hero-scroll-hint");
 
-    if (lensOverlay) {
-        // Expand lens frame outward and fade as user enters lens
-        const scaleVal = 1 + ease * 2.2;
-        const opacityVal = Math.max(0, 1 - ease * 1.6);
-        lensOverlay.style.transform = `scale(${scaleVal})`;
-        lensOverlay.style.opacity = opacityVal;
-    }
-
-    if (cameraHud) {
-        // Fade HUD stats as user scrolls inside
-        const hudOpacity = Math.max(0, 1 - ease * 1.8);
-        cameraHud.style.opacity = hudOpacity;
-    }
-
-    if (focusBox) {
-        const boxOpacity = Math.max(0, 1 - ease * 2.2);
-        focusBox.style.opacity = boxOpacity;
-    }
-
-    if (scrollHint) {
-        const hintOpacity = Math.max(0, 1 - progress * 4);
-        scrollHint.style.opacity = hintOpacity;
-    }
 
     /* -------------------------
        Navbar Visibility
