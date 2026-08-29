@@ -1985,11 +1985,16 @@ footer a:hover {
    PAGE HERO & CAMERA HUD OVERLAYS
 ========================================= */
 
+/* Disable viewfinder corners on subpages to avoid navbar overlap */
+body.page .viewfinder {
+    display: none !important;
+}
+
 .page-hero {
-    height: 48vh;
-    min-height: 340px;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    height: auto;
+    min-height: 380px;
+    padding-top: 140px;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2055,10 +2060,10 @@ footer a:hover {
     gap: 12px;
 }
 
-.page-camera-hud .hud-top-left { top: 20px; left: 24px; }
-.page-camera-hud .hud-top-right { top: 20px; right: 24px; }
-.page-camera-hud .hud-bottom-left { bottom: 20px; left: 24px; }
-.page-camera-hud .hud-bottom-right { bottom: 20px; right: 24px; }
+.page-camera-hud .hud-top-left { top: 85px; left: 32px; }
+.page-camera-hud .hud-top-right { top: 85px; right: 32px; }
+.page-camera-hud .hud-bottom-left { bottom: 20px; left: 32px; }
+.page-camera-hud .hud-bottom-right { bottom: 20px; right: 32px; }
 
 .page-hero-content {
     position: relative;
@@ -2714,8 +2719,83 @@ footer a:hover {
     }
 
     /* =========================================
-   HERO
-========================================= */
+       SUBPAGE HERO & TEAM RESPONSIVE (MOBILE)
+    ========================================= */
+
+    .page-hero {
+        min-height: 280px;
+        padding-top: 115px;
+        padding-bottom: 35px;
+    }
+
+    .page-hero h1 {
+        font-size: 2.8rem;
+        letter-spacing: 3px;
+    }
+
+    .page-subtitle {
+        font-size: 1.05rem;
+        padding: 0 10px;
+    }
+
+    .page-badge {
+        font-size: 0.65rem;
+        padding: 4px 12px;
+        margin-bottom: 10px;
+    }
+
+    .page-camera-hud .hud-top-left,
+    .page-camera-hud .hud-top-right {
+        display: none !important;
+    }
+
+    .page-camera-hud .hud-bottom-left,
+    .page-camera-hud .hud-bottom-right {
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+    }
+
+    .team-stats-bar {
+        width: 92%;
+        margin: -25px auto 30px;
+        padding: 16px 12px;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+
+    .stat-number {
+        font-size: 1.7rem;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+    }
+
+    .stat-divider {
+        height: 28px;
+    }
+
+    .section-badge-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+        margin: 30px 0 30px;
+    }
+
+    .team-grid {
+        gap: 28px;
+        margin: 25px 0 50px;
+    }
+
+    .member-card {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    /* =========================================
+       HERO
+    ========================================= */
 
     .hero {
 
