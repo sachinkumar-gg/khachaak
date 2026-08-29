@@ -155,37 +155,7 @@ function updateHero(){
 
     const ease = 1 - Math.pow(1 - progress, 3);
 
-    /* -------------------------
-       Camera Zoom Through Lens Optics
-    ------------------------- */
-    const lensOverlay = document.querySelector(".camera-lens-overlay");
-    const cameraHud = document.querySelector(".hero-camera-hud");
-    const focusBox = document.querySelector(".hero-focus-box");
-    const scrollHint = document.querySelector(".hero-scroll-hint");
 
-    if (lensOverlay) {
-        // Expand lens frame outward and fade as user enters lens
-        const scaleVal = 1 + ease * 2.2;
-        const opacityVal = Math.max(0, 1 - ease * 1.6);
-        lensOverlay.style.transform = `scale(${scaleVal})`;
-        lensOverlay.style.opacity = opacityVal;
-    }
-
-    if (cameraHud) {
-        // Fade HUD stats as user scrolls inside
-        const hudOpacity = Math.max(0, 1 - ease * 1.8);
-        cameraHud.style.opacity = hudOpacity;
-    }
-
-    if (focusBox) {
-        const boxOpacity = Math.max(0, 1 - ease * 2.2);
-        focusBox.style.opacity = boxOpacity;
-    }
-
-    if (scrollHint) {
-        const hintOpacity = Math.max(0, 1 - progress * 4);
-        scrollHint.style.opacity = hintOpacity;
-    }
 
     /* -------------------------
        Navbar Visibility
@@ -365,66 +335,25 @@ document.querySelectorAll(".mobile-menu a").forEach(link=>{
 
 
 /* =========================================
-   HERO SLIDESHOW
+   HERO GRID DISTORTION (React Bits WebGL)
 ========================================= */
 
-const heroImages = [
-
-    "assets/street/1.webp",
-    "assets/street/2.webp",
-    "assets/street/3.webp",
-    "assets/street/4.webp"
-
-];
-
-let heroIndex = 0;
-
+const heroImage = "assets/street/3.webp";
 const heroBackground = document.querySelector(".hero-bg");
+let distortionInstance = null;
 
-function changeHeroImage(){
-
-    if(!heroBackground) return;
-
-    heroBackground.style.transition =
-        "opacity .8s ease, transform 8s ease";
-
-    heroBackground.style.opacity = "0";
-
-    setTimeout(()=>{
-
-        heroIndex =
-            (heroIndex+1)%heroImages.length;
-
-        heroBackground.style.backgroundImage =
-            `url("${heroImages[heroIndex]}")`;
-
-        heroBackground.style.opacity = "1";
-
-        heroBackground.style.transform =
-            "scale(1.04)";
-
-        requestAnimationFrame(()=>{
-
-            setTimeout(()=>{
-
-                heroBackground.style.transform =
-                    "scale(1)";
-
-            },50);
-
+if (heroBackground) {
+    if (typeof GridDistortion !== "undefined") {
+        distortionInstance = GridDistortion.init(heroBackground, {
+            grid: 10,
+            mouse: 0.1,
+            strength: 0.15,
+            relaxation: 0.9,
+            imageSrc: heroImage
         });
-
-    },800);
-
-}
-
-if(heroBackground){
-
-    heroBackground.style.backgroundImage =
-        `url("${heroImages[0]}")`;
-
-    setInterval(changeHeroImage,7000);
-
+    } else {
+        heroBackground.style.backgroundImage = `url("${heroImage}")`;
+    }
 }
 
 /* =========================================
