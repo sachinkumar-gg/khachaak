@@ -1,0 +1,14 @@
+# robots.txt for Khachaak - Official Photography Club of NMIMS MPSTME
+User-agent: *
+Allow: /
+
+# Priority Pages
+Allow: /index.html
+Allow: /team.html
+Allow: /advisory.html
+Allow: /events.html
+Allow: /gallery.html
+Allow: /assets/
+
+# Sitemap
+Sitemap: https://khachaak.mpstme.com/sitemap.xml
