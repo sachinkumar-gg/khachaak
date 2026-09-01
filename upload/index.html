@@ -95,7 +95,7 @@
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
             var isAndroid = /android/i.test(userAgent);
-            var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+            var isIOS = /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
             var appLink = document.getElementById("app-link");
 
@@ -108,13 +108,13 @@
                     window.location.replace(webUrl);
                 }, 600);
             } else if (isIOS) {
-                var iosScheme = "googledrive://drive.google.com/drive/folders/" + folderId;
-                if (appLink) appLink.href = iosScheme;
+                if (appLink) {
+                    appLink.href = webUrl;
+                    appLink.setAttribute("target", "_top");
+                }
 
-                window.location.href = iosScheme;
-                setTimeout(function() {
-                    window.location.replace(webUrl);
-                }, 600);
+                // Trigger iOS Universal Link for Google Drive App
+                window.location.href = webUrl;
             } else {
                 window.location.replace(webUrl);
             }
