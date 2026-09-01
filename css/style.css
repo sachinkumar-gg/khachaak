@@ -1554,6 +1554,39 @@ nav ul li.active a {
     line-height: 1.9;
 }
 
+.theme-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--bronze) 0%, #9e7553 100%);
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 25px rgba(199, 154, 118, 0.3);
+}
+
+.theme-cta-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 16px 35px rgba(199, 154, 118, 0.5);
+    color: #000000;
+}
+
+.theme-cta-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.theme-cta-btn:hover svg {
+    transform: translateX(4px);
+}
+
 /* =========================================
    PHOTOS OF THE MONTH
 ========================================= */
@@ -1958,11 +1991,44 @@ footer img {
     margin: 0 auto 25px auto;
 }
 
-footer p {
+.theme-content p {
 
     color: var(--grey);
 
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.theme-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--bronze) 0%, #9e7553 100%);
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 25px rgba(199, 154, 118, 0.3);
+}
+
+.theme-cta-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 16px 35px rgba(199, 154, 118, 0.5);
+    color: #000000;
+}
+
+.theme-cta-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.theme-cta-btn:hover svg {
+    transform: translateX(4px);
 }
 
 footer a {
