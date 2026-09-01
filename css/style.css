@@ -1977,6 +1977,15 @@ footer a:hover {
     color: var(--bronze-light);
 }
 
+.footer-subtext {
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: 'Inter', sans-serif;
+}
+
 /* =========================================
    PAGE HERO & SUBPAGES
 ========================================= */
