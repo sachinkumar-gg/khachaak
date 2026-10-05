@@ -3,6 +3,10 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/photowalk",
+      "destination": "/photowalk.html"
+    },
+    {
       "source": "/photowalk-t&c",
       "destination": "/photowalk-t&c.html"
     },

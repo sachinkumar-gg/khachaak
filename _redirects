@@ -1,4 +1,5 @@
 # _redirects configuration for Khachaak
+/photowalk /photowalk.html 200
 /photowalk-t&c /photowalk-t&c.html 200
 /photowalk-tc /photowalk-t&c.html 200
 /photowalk-tandc /photowalk-t&c.html 200
