@@ -7,12 +7,12 @@
 
     <title>Thank You for Registering | Khachaak PhotoWalk 2026</title>
     <meta name="description"
-        content="Your registration for Khachaak PhotoWalk 2026 is confirmed! Join the official WhatsApp group for all updates and announcements.">
+        content="Your registration for Khachaak PhotoWalk 2026 is confirmed! Thank you for registering.">
     <link rel="icon" type="image/png" href="/assets/logos/favicon.png">
 
     <!-- Open Graph / Meta -->
     <meta property="og:title" content="Registration Confirmed | Khachaak PhotoWalk 2026">
-    <meta property="og:description" content="Thank you for registering! Join the official WhatsApp group to get all event details and updates.">
+    <meta property="og:description" content="Thank you for registering for Khachaak PhotoWalk 2026!">
     <meta property="og:image" content="/assets/logos/logo.webp">
 
     <!-- Global Stylesheet -->
@@ -65,7 +65,7 @@
             transform: translateX(-50%);
             width: 650px;
             height: 400px;
-            background: radial-gradient(ellipse at center, rgba(199, 154, 118, 0.22) 0%, rgba(37, 211, 102, 0.08) 45%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(199, 154, 118, 0.22) 0%, rgba(199, 154, 118, 0.05) 50%, transparent 70%);
             filter: blur(80px);
             pointer-events: none;
             z-index: 1;
@@ -109,7 +109,7 @@
             border: 1px solid rgba(199, 154, 118, 0.32);
             border-radius: 28px;
             padding: 52px 42px;
-            max-width: 580px;
+            max-width: 560px;
             width: 100%;
             text-align: center;
             box-shadow:
@@ -137,7 +137,7 @@
             left: 15%;
             right: 15%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--bronze, #c79a76), #25D366, transparent);
+            background: linear-gradient(90deg, transparent, var(--bronze, #c79a76), var(--bronze-light, #e0b394), transparent);
         }
 
         /* Logo */
@@ -218,117 +218,28 @@
             color: rgba(255, 255, 255, 0.78);
             font-size: 0.98rem;
             line-height: 1.7;
-            margin: 0 0 32px 0;
+            margin: 0 0 28px 0;
             font-weight: 400;
-        }
-
-        /* WhatsApp Focus Highlight Box */
-        .whatsapp-cta-box {
-            background: linear-gradient(145deg, rgba(37, 211, 102, 0.1) 0%, rgba(18, 140, 126, 0.06) 50%, rgba(14, 14, 18, 0.7) 100%);
-            border: 1px solid rgba(37, 211, 102, 0.35);
-            border-radius: 20px;
-            padding: 28px 24px;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .whatsapp-cta-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.12) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .whatsapp-box-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            color: #25D366;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .whatsapp-box-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin: 0 0 8px 0;
-        }
-
-        .whatsapp-box-desc {
-            font-size: 0.88rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-            margin: 0 0 22px 0;
-        }
-
-        /* Primary WhatsApp Button */
-        .btn-whatsapp {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 16px 24px;
-            background: linear-gradient(135deg, #25D366 0%, #1ea952 100%);
-            color: #050505;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: 0.02em;
-            border-radius: 14px;
-            text-decoration: none;
-            box-sizing: border-box;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
-            border: none;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .btn-whatsapp:hover, .btn-whatsapp:focus {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 14px 36px rgba(37, 211, 102, 0.55);
-            background: linear-gradient(135deg, #2cf276 0%, #20b859 100%);
-            color: #000000;
-        }
-
-        .btn-whatsapp svg {
-            width: 22px;
-            height: 22px;
-            flex-shrink: 0;
         }
 
         /* Next Steps checklist / Notice */
         .steps-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 20px 22px;
-            margin-bottom: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(199, 154, 118, 0.22);
+            border-radius: 18px;
+            padding: 22px 24px;
+            margin-bottom: 28px;
             text-align: left;
         }
 
         .steps-card-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             color: var(--bronze, #c79a76);
             text-transform: uppercase;
-            margin: 0 0 12px 0;
+            margin: 0 0 14px 0;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -340,21 +251,21 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .step-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            font-size: 0.86rem;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.78);
+            gap: 12px;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.82);
         }
 
         .step-dot {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: rgba(199, 154, 118, 0.15);
             border: 1px solid rgba(199, 154, 118, 0.4);
@@ -362,10 +273,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             font-weight: 700;
             flex-shrink: 0;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .step-item a {
@@ -382,7 +293,7 @@
         /* Secondary actions */
         .btn-group {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             width: 100%;
         }
 
@@ -392,28 +303,28 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 18px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: rgba(255, 255, 255, 0.85);
+            padding: 14px 20px;
+            background: rgba(199, 154, 118, 0.1);
+            border: 1px solid rgba(199, 154, 118, 0.35);
+            color: #ffffff;
             font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 14px;
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .btn-secondary:hover {
-            background: rgba(199, 154, 118, 0.12);
-            border-color: rgba(199, 154, 118, 0.35);
-            color: #ffffff;
-            transform: translateY(-1px);
+            background: var(--bronze, #c79a76);
+            color: #050505;
+            border-color: var(--bronze, #c79a76);
+            transform: translateY(-2px);
         }
 
         /* EXIF Chip */
         .exif-chip-row {
-            margin-top: 26px;
+            margin-top: 28px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -446,15 +357,6 @@
 
             .thank-you-title {
                 font-size: 2.6rem;
-            }
-
-            .whatsapp-cta-box {
-                padding: 22px 16px;
-            }
-
-            .btn-whatsapp {
-                font-size: 0.98rem;
-                padding: 14px 20px;
             }
 
             .btn-group {
@@ -539,55 +441,26 @@
             <div class="thank-you-event-tag">Khachaak PhotoWalk 2026</div>
             <h1 class="thank-you-title">THANK YOU FOR REGISTERING!</h1>
             <p class="thank-you-desc">
-                Your spot for PhotoWalk 2026 has been successfully recorded. Get your lenses ready for an inspiring photo journey through the city.
+                Your spot for PhotoWalk 2026 has been successfully recorded. We can’t wait to create and capture extraordinary frames together.
             </p>
 
-            <!-- Prominent WhatsApp CTA Box -->
-            <div class="whatsapp-cta-box">
-                <div class="whatsapp-box-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.53 1.83.81 2.791.81 3.182 0 5.768-2.587 5.768-5.766.001-3.187-2.575-5.766-5.768-5.766z"/>
-                    </svg>
-                    Action Required
-                </div>
-                <h2 class="whatsapp-box-title">Join the Official WhatsApp Group</h2>
-                <p class="whatsapp-box-desc">
-                    All crucial announcements, gathering points, schedule timings, route guidelines, and photography prompts are shared exclusively in this group.
-                </p>
-
-                <!-- WhatsApp Button -->
-                <a href="https://chat.whatsapp.com/IAx9vhkbizsBZycShK0vqd?mode=gi_t" target="_blank"
-                    rel="noopener noreferrer" class="btn-whatsapp" id="whatsappJoinBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path
-                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                    </svg>
-                    <span>Join WhatsApp Group</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Steps & Checklist -->
+            <!-- Important Information -->
             <div class="steps-card">
                 <div class="steps-card-title">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
-                    What to do next
+                    Important Information
                 </div>
                 <ul class="steps-list">
                     <li class="step-item">
                         <span class="step-dot">1</span>
-                        <span>Click the button above to enter the official WhatsApp participants group.</span>
+                        <span>Review the official <a href="/photowalk-t&c" target="_blank">PhotoWalk Terms &amp; Conditions</a>.</span>
                     </li>
                     <li class="step-item">
                         <span class="step-dot">2</span>
-                        <span>Review the official <a href="/photowalk-t&c" target="_blank">PhotoWalk Terms &amp; Conditions</a>.</span>
+                        <span>Keep an eye out for upcoming schedule and gathering point announcements.</span>
                     </li>
                     <li class="step-item">
                         <span class="step-dot">3</span>
@@ -596,7 +469,7 @@
                 </ul>
             </div>
 
-            <!-- Secondary Action Buttons -->
+            <!-- Action Buttons -->
             <div class="btn-group">
                 <a href="/" class="btn-secondary">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
