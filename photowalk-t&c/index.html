@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhotoWalk 2026 Terms &amp; Conditions | Khachaak</title>
+    <meta name="description"
+        content="Official Terms &amp; Conditions for PhotoWalk 2026 organized by Khachaak, the Official Photography Club of SVKM’s NMIMS MPSTME.">
+    <link rel="icon" type="image/png" href="/assets/logos/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* =========================================
+           TERMS & CONDITIONS SPECIFIC STYLING
+           Matches OG Khachaak Dark Cinematic Aesthetic
+           ========================================= */
+
+        .tc-section {
+            padding: 40px 8% 100px;
+            max-width: 1040px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Document Meta & Action Bar */
+        .tc-action-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 30px;
+            padding: 16px 24px;
+            background: rgba(14, 14, 18, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(199, 154, 118, 0.25);
+            border-radius: 16px;
+        }
+
+        .tc-meta-badges {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tc-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(199, 154, 118, 0.12);
+            border: 1px solid rgba(199, 154, 118, 0.3);
+            border-radius: 20px;
+            color: var(--bronze, #c79a76);
+            font-weight: 500;
+        }
+
+        .tc-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px #22c55e;
+            display: inline-block;
+        }
+
+        .tc-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(199, 154, 118, 0.1);
+            border: 1px solid rgba(199, 154, 118, 0.35);
+            color: #f5f5f5;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tc-btn:hover {
+            background: var(--bronze, #c79a76);
+            color: #050505;
+            border-color: var(--bronze, #c79a76);
+            transform: translateY(-1px);
+        }
+
+        /* Document Card */
+        .tc-document-card {
+            background: rgba(14, 14, 18, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(199, 154, 118, 0.3);
+            border-radius: 24px;
+            padding: 56px 48px;
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(199, 154, 118, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tc-document-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--bronze, #c79a76) 50%, transparent 100%);
+        }
+
+        /* Watermark / Background camera mark */
+        .tc-watermark {
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            width: 320px;
+            opacity: 0.03;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Document Header */
+        .tc-doc-header {
+            text-align: center;
+            border-bottom: 1px solid rgba(199, 154, 118, 0.2);
+            padding-bottom: 36px;
+            margin-bottom: 40px;
+        }
+
+        .tc-doc-logo {
+            width: 90px;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+        }
+
+        .tc-doc-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.4rem;
+            letter-spacing: 4px;
+            color: var(--bronze, #c79a76);
+            margin: 0 0 6px 0;
+            line-height: 1;
+        }
+
+        .tc-doc-subtitle {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin: 0 0 16px 0;
+        }
+
+        .tc-doc-org-line {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* Preamble Box */
+        .tc-preamble-box {
+            background: linear-gradient(135deg, rgba(199, 154, 118, 0.12) 0%, rgba(14, 14, 18, 0.4) 100%);
+            border-left: 3px solid var(--bronze, #c79a76);
+            border-top: 1px solid rgba(199, 154, 118, 0.2);
+            border-right: 1px solid rgba(199, 154, 118, 0.15);
+            border-bottom: 1px solid rgba(199, 154, 118, 0.15);
+            border-radius: 0 16px 16px 0;
+            padding: 24px 28px;
+            margin-bottom: 44px;
+        }
+
+        .tc-preamble-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: #f0f0f0;
+            margin: 0;
+        }
+
+        .tc-preamble-text strong {
+            color: var(--bronze-light, #e0b394);
+            font-weight: 600;
+        }
+
+        /* Clause List */
+        .tc-clauses-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .tc-clause-card {
+            background: rgba(20, 20, 26, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 28px 32px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tc-clause-card:hover {
+            border-color: rgba(199, 154, 118, 0.35);
+            background: rgba(24, 24, 32, 0.8);
+            transform: translateX(4px);
+        }
+
+        .tc-clause-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .tc-clause-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--bronze, #c79a76);
+            background: rgba(199, 154, 118, 0.14);
+            border: 1px solid rgba(199, 154, 118, 0.35);
+            padding: 4px 10px;
+            border-radius: 8px;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .tc-clause-title {
+            font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .tc-clause-body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.96rem;
+            line-height: 1.85;
+            color: rgba(245, 245, 245, 0.82);
+            font-weight: 400;
+        }
+
+        .tc-clause-body p {
+            margin: 0 0 12px 0;
+        }
+
+        .tc-clause-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Sign-off / Organization block */
+        .tc-signoff-card {
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(199, 154, 118, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .tc-signoff-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--bronze, #c79a76);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .tc-signoff-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 8px 0;
+        }
+
+        .tc-signoff-institute {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0 0 16px 0;
+            max-width: 580px;
+            line-height: 1.6;
+        }
+
+        .tc-signoff-event-badge {
+            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--bronze, #c79a76);
+            padding: 4px 20px;
+            border: 1px solid rgba(199, 154, 118, 0.4);
+            border-radius: 30px;
+            background: rgba(199, 154, 118, 0.08);
+        }
+
+        /* Toast notification */
+        .tc-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #111116;
+            border: 1px solid var(--bronze, #c79a76);
+            color: #ffffff;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tc-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tc-section {
+                padding: 20px 5% 70px;
+            }
+
+            .tc-document-card {
+                padding: 36px 20px;
+                border-radius: 18px;
+            }
+
+            .tc-doc-title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .tc-doc-subtitle {
+                font-size: 0.95rem;
+                letter-spacing: 2px;
+            }
+
+            .tc-clause-card {
+                padding: 20px 18px;
+            }
+
+            .tc-clause-title {
+                font-size: 1.1rem;
+            }
+
+            .tc-clause-body {
+                font-size: 0.9rem;
+            }
+
+            .tc-action-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .tc-actions {
+                justify-content: flex-start;
+                width: 100%;
+            }
+
+            .tc-btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        /* Print Mode */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #111111 !important;
+            }
+
+            nav,
+            .mobile-menu,
+            footer,
+            .page-camera-hud,
+            .tc-action-bar,
+            .page-hero-bg,
+            .page-light-leak,
+            .page-noise,
+            .tc-toast {
+                display: none !important;
+            }
+
+            .page-hero {
+                min-height: auto !important;
+                padding: 20px 0 !important;
+                background: none !important;
+            }
+
+            .page-hero h1,
+            .tc-doc-title {
+                color: #111111 !important;
+                font-size: 2.5rem !important;
+            }
+
+            .tc-section {
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+
+            .tc-document-card {
+                background: #ffffff !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+
+            .tc-clause-card {
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                break-inside: avoid;
+                margin-bottom: 16px;
+            }
+
+            .tc-clause-title {
+                color: #000000 !important;
+            }
+
+            .tc-clause-body {
+                color: #333333 !important;
+            }
+
+            .tc-preamble-box {
+                background: #f8fafc !important;
+                border-left: 3px solid #333333 !important;
+                color: #111111 !important;
+            }
+
+            .tc-preamble-text {
+                color: #111111 !important;
+            }
+
+            .tc-signoff-card {
+                color: #111111 !important;
+            }
+
+            .tc-signoff-title {
+                color: #111111 !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="page">
+
+    <!-- Viewfinder Corners -->
+    <div class="viewfinder top-left"></div>
+    <div class="viewfinder top-right"></div>
+    <div class="viewfinder bottom-left"></div>
+    <div class="viewfinder bottom-right"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="/" class="logo-target" aria-label="Khachaak Home">
+            <img src="/assets/logos/logo.webp" loading="lazy" alt="Khachaak">
+        </a>
+        <ul>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#stories">Featured Stories</a></li>
+            <li><a href="/#gallery">Wall of Frames</a></li>
+            <li><a href="/#theme">Theme</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/team">Team</a></li>
+            <li><a href="/advisory">Advisory</a></li>
+            <li><a href="/#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <button class="close-menu">&times;</button>
+        <img src="/assets/logos/logo.webp" loading="lazy" class="mobile-menu-logo" alt="Khachaak">
+        <a href="/#about">About</a>
+        <a href="/#stories">Featured Stories</a>
+        <a href="/#gallery">Wall of Frames</a>
+        <a href="/#theme">Theme</a>
+        <a href="/events">Events</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/team">Team</a>
+        <a href="/advisory">Advisory</a>
+        <a href="/#contact">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-light-leak"></div>
+        <div class="page-noise"></div>
+
+        <!-- Camera Viewfinder HUD Overlay -->
+        <div class="page-camera-hud">
+            <div class="hud-top-left">
+                <span class="hud-rec-dot"></span>
+                <span>DOC · T&amp;C · 2026</span>
+            </div>
+            <div class="hud-top-right">
+                <span>LEGAL</span>
+                <span>14 CLAUSES</span>
+                <span>RAW</span>
+            </div>
+            <div class="hud-bottom-left">
+                <span>KHACHAAK · MPSTME</span>
+            </div>
+            <div class="hud-bottom-right">
+                <span>AF-C · SECURE</span>
+            </div>
+        </div>
+
+        <div class="page-hero-content">
+            <span class="page-badge">OFFICIAL EVENT POLICY</span>
+            <h1>PHOTO WALK 2026</h1>
+            <p class="page-subtitle">Terms &amp; Conditions</p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <main class="tc-section">
+
+
+
+
+
+        <!-- Document Card -->
+        <article class="tc-document-card">
+            <!-- Background watermark -->
+            <img src="/assets/logos/logo.webp" class="tc-watermark" alt="" aria-hidden="true">
+
+            <!-- Document Header -->
+            <header class="tc-doc-header">
+                <img src="/assets/logos/logo.webp" loading="lazy" class="tc-doc-logo" alt="Khachaak">
+                <h2 class="tc-doc-title">PHOTO WALK 2026</h2>
+                <div class="tc-doc-subtitle">TERMS &amp; CONDITIONS</div>
+                <p class="tc-doc-org-line">
+                    Khachaak — Official Photography Club of SVKM’s NMIMS MPSTME
+                </p>
+            </header>
+
+            <!-- Preamble -->
+            <div class="tc-preamble-box">
+                <p class="tc-preamble-text">
+                    By registering for and/or participating in <strong>PhotoWalk 2026</strong>, organized by
+                    <strong>Khachaak, the Photography Committee of SVKM’s NMIMS MPSTME</strong>, the participant
+                    acknowledges and agrees to the following Terms &amp; Conditions:
+                </p>
+            </div>
+
+            <!-- Clauses Grid -->
+            <div class="tc-clauses-grid">
+
+                <!-- Clause 1 -->
+                <section class="tc-clause-card" id="clause-1">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">01</span>
+                        <h3 class="tc-clause-title">Participation at Own Risk</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Participation in PhotoWalk 2026 is voluntary and undertaken at the participant’s own risk.
+                            Participants are responsible for their own safety, health, personal conduct, and belongings
+                            throughout the event.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 2 -->
+                <section class="tc-clause-card" id="clause-2">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">02</span>
+                        <h3 class="tc-clause-title">Limitation of Liability</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Khachaak, SVKM’s NMIMS MPSTME, its office bearers, executive committee members, volunteers,
+                            coordinators, student members, and associated personnel shall not be held responsible or
+                            liable for any injury, accident, illness, loss, theft, damage, or other personal or
+                            property-related incident occurring before, during, or after the event, except to the extent
+                            required by applicable law.
+                        </p>
+                        <p>
+                            No individual member, volunteer, coordinator, or student representative of Khachaak shall be
+                            personally liable for any loss, damage, injury, or claim arising from participation in the
+                            event.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 3 -->
+                <section class="tc-clause-card" id="clause-3">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">03</span>
+                        <h3 class="tc-clause-title">Personal Belongings &amp; Equipment</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Participants are solely responsible for their cameras, lenses, mobile phones, bags, wallets,
+                            laptops, accessories, and other personal belongings. Khachaak shall not be responsible for
+                            any loss, theft, misplacement, or damage to personal property.
+                        </p>
+                        <p>
+                            Participants are advised not to carry unnecessary valuables.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 4 -->
+                <section class="tc-clause-card" id="clause-4">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">04</span>
+                        <h3 class="tc-clause-title">Travel &amp; Transportation</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Where transportation is arranged or facilitated for the event, participants acknowledge that
+                            travel involves inherent risks. Participants must follow all instructions issued by the
+                            organizers, transport providers, drivers, and event coordinators.
+                        </p>
+                        <p>
+                            Khachaak shall not be responsible for delays, cancellations, traffic-related issues,
+                            accidents, or circumstances arising from third-party transportation providers, except where
+                            liability cannot legally be excluded.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 5 -->
+                <section class="tc-clause-card" id="clause-5">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">05</span>
+                        <h3 class="tc-clause-title">Third-Party Services</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Any transportation, food, venue, activity, equipment rental, or other service provided by an
+                            external vendor or third party is subject to that provider’s own terms and conditions.
+                        </p>
+                        <p>
+                            Khachaak shall not be responsible for the acts, omissions, negligence, delays, or failures
+                            of independent third-party service providers, except where otherwise required by applicable
+                            law.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 6 -->
+                <section class="tc-clause-card" id="clause-6">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">06</span>
+                        <h3 class="tc-clause-title">Participant Conduct</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Participants are expected to behave responsibly and respectfully throughout the event. Any
+                            participant engaging in misconduct, harassment, damage to property, illegal activity, unsafe
+                            behaviour, or behaviour that endangers themselves or others may be removed from the event
+                            without refund.
+                        </p>
+                        <p>
+                            Participants are responsible for complying with applicable laws, venue rules, and
+                            instructions provided by the organizers.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 7 -->
+                <section class="tc-clause-card" id="clause-7">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">07</span>
+                        <h3 class="tc-clause-title">Photography &amp; Content</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Participants may be photographed, filmed, or otherwise recorded during the event. By
+                            participating in the event, participants consent to reasonable use of photographs, videos,
+                            and other event-related content featuring them for Khachaak’s documentation, promotional,
+                            social media, website, and future event-related purposes, subject to applicable law.
+                        </p>
+                        <p>
+                            Participants are responsible for ensuring that their own photographs and content do not
+                            infringe the privacy, intellectual property, or other rights of any person or entity.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 8 -->
+                <section class="tc-clause-card" id="clause-8">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">08</span>
+                        <h3 class="tc-clause-title">Photography Equipment</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Participants are solely responsible for the safe handling and use of their photography
+                            equipment. Khachaak shall not be responsible for damage to cameras, lenses, drones, tripods,
+                            mobile phones, or any other equipment brought by participants.
+                        </p>
+                        <p>
+                            Any use of drones or other equipment requiring permission must comply with applicable laws
+                            and regulations.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 9 -->
+                <section class="tc-clause-card" id="clause-9">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">09</span>
+                        <h3 class="tc-clause-title">Health &amp; Medical Emergencies</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Participants are responsible for informing the organizers of any relevant circumstances that
+                            may affect their ability to participate safely. In the event of an emergency, organizers may
+                            arrange or facilitate reasonable assistance, including contacting emergency services or the
+                            participant’s emergency contact.
+                        </p>
+                        <p>
+                            Any medical expenses incurred by a participant shall be borne by the participant unless
+                            otherwise required by law.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 10 -->
+                <section class="tc-clause-card" id="clause-10">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">10</span>
+                        <h3 class="tc-clause-title">Changes, Cancellation &amp; Force Majeure</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Khachaak reserves the right to modify the schedule, itinerary, locations, activities,
+                            transportation arrangements, or other aspects of the event due to weather, safety concerns,
+                            operational requirements, government restrictions, venue issues, transportation issues, or
+                            other circumstances beyond its reasonable control.
+                        </p>
+                        <p>
+                            In such circumstances, Khachaak shall not be liable for any consequential loss or expenses
+                            incurred by participants, subject to applicable law.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 11 -->
+                <section class="tc-clause-card" id="clause-11">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">11</span>
+                        <h3 class="tc-clause-title">Registration &amp; Refunds</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            Registration is subject to the information and payment details provided by the participant.
+                            Any refund, cancellation, or transfer of registration shall be governed by the refund policy
+                            communicated by the organizers.
+                        </p>
+                        <p>
+                            Registration fees, once paid, may be non-refundable unless expressly stated otherwise by the
+                            organizers.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 12 -->
+                <section class="tc-clause-card" id="clause-12">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">12</span>
+                        <h3 class="tc-clause-title">Indemnification</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            To the extent permitted by applicable law, participants agree to indemnify and hold harmless
+                            Khachaak, its office bearers, executive committee members, volunteers, coordinators, student
+                            members, and associated personnel from claims, losses, damages, costs, or expenses arising
+                            from the participant’s own acts, omissions, misconduct, violation of these Terms &amp;
+                            Conditions, or violation of applicable laws.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 13 -->
+                <section class="tc-clause-card" id="clause-13">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">13</span>
+                        <h3 class="tc-clause-title">Acceptance of Terms</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            By completing the registration and/or participating in PhotoWalk 2026, the participant
+                            confirms that they have read, understood, and agreed to these Terms &amp; Conditions.
+                        </p>
+                        <p>
+                            Participants under the applicable age of majority must obtain the necessary consent from
+                            their parent or legal guardian before participating.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Clause 14 -->
+                <section class="tc-clause-card" id="clause-14">
+                    <div class="tc-clause-header">
+                        <span class="tc-clause-num">14</span>
+                        <h3 class="tc-clause-title">Final Authority</h3>
+                    </div>
+                    <div class="tc-clause-body">
+                        <p>
+                            The organizers reserve the right to make reasonable decisions regarding the conduct, safety,
+                            scheduling, and operation of PhotoWalk 2026. The organizers’ decision regarding removal of a
+                            participant on safety or disciplinary grounds shall be final, subject to applicable law.
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Sign-off Section -->
+            <footer class="tc-signoff-card">
+                <span class="tc-signoff-badge">Organized by</span>
+                <h4 class="tc-signoff-title">Khachaak — Official Photography Club of MPSTME</h4>
+                <p class="tc-signoff-institute">
+                    SVKM’s NMIMS, Mukesh Patel School of Technology Management &amp; Engineering (MPSTME)
+                </p>
+                <div class="tc-signoff-event-badge">PhotoWalk 2026</div>
+            </footer>
+
+        </article>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer>
+        <img src="/assets/logos/logo.webp" loading="lazy" alt="Khachaak">
+        <p>Official Photography Club of NMIMS MPSTME</p>
+        <a href="https://instagram.com/khachaak.mpstme" target="_blank">@khachaak.mpstme</a>
+        <p class="footer-subtext">Made with ❤️ by Khachaak Team 2026-27</p>
+    </footer>
+
+    <!-- Toast Notification for Share / Copy -->
+    <div class="tc-toast" id="tcToast" role="alert" aria-live="polite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c79a76" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="tcToastMsg">Link copied to clipboard!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/script.js"></script>
+    <script>
+        // Print / PDF Button
+        const printBtn = document.getElementById('printBtn');
+        if (printBtn) {
+            printBtn.addEventListener('click', () => {
+                window.print();
+            });
+        }
+
+        // Share / Copy Link Button
+        const copyBtn = document.getElementById('copyBtn');
+        const toast = document.getElementById('tcToast');
+        const toastMsg = document.getElementById('tcToastMsg');
+        let toastTimeout;
+
+        function showToast(message) {
+            if (!toast) return;
+            toastMsg.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async () => {
+                const url = window.location.href;
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'PhotoWalk 2026 Terms & Conditions | Khachaak',
+                            text: 'Official Terms & Conditions for PhotoWalk 2026 organized by Khachaak MPSTME.',
+                            url: url
+                        });
+                        return;
+                    } catch (err) {
+                        // If user canceled share or share not allowed, fall back to clipboard
+                    }
+                }
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    try {
+                        await navigator.clipboard.writeText(url);
+                        showToast('Link copied to clipboard!');
+                    } catch (err) {
+                        showToast('Could not copy link.');
+                    }
+                } else {
+                    showToast('Link: ' + window.location.href);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,26 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/photowalk-t&c",
+      "destination": "/photowalk-t&c.html"
+    },
+    {
+      "source": "/photowalk-t%26c",
+      "destination": "/photowalk-t&c.html"
+    },
+    {
+      "source": "/photowalk-tc",
+      "destination": "/photowalk-t&c.html"
+    },
+    {
+      "source": "/photowalk-tandc",
+      "destination": "/photowalk-t&c.html"
+    },
+    {
+      "source": "/photowalk-t-and-c",
+      "destination": "/photowalk-t&c.html"
+    }
+  ]
 }
