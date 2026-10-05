@@ -21,6 +21,18 @@
     {
       "source": "/photowalk-t-and-c",
       "destination": "/photowalk-t&c.html"
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/thank-you.html"
+    },
+    {
+      "source": "/thankyou",
+      "destination": "/thank-you.html"
+    },
+    {
+      "source": "/thanks",
+      "destination": "/thank-you.html"
     }
   ]
 }
